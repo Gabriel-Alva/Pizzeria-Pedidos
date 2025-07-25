@@ -1,0 +1,748 @@
+/* ====== Variables y configuración base ====== */
+:root {
+  --verde-oscuro: #2ecc40;
+  --acento: #ff9800;
+  --color-fondo: #f6f7fb;
+  --color-texto: #222e3c;
+  --color-borde: #d0e6c1;
+  --color-borde-focus: #ff9800;
+  --color-fondo-input: #fff;
+  --color-fondo-seccion: #f8fffa;
+  --color-fondo-resumen: #f9fff4;
+  --color-fondo-resumen-alt: #f4f8f2;
+  --color-header-resumen: #eafbe7;
+  --sombra-suave: 0 2px 16px rgba(0,0,0,0.08);
+  --sombra-input: 0 1px 6px rgba(0,0,0,0.04);
+  --borde-radius: 16px;
+  --borde-radius-input: 7px;
+  --borde-radius-btn: 8px;
+}
+
+/* ====== Reset y configuración base ====== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* ====== Contenedor principal del checkout ====== */
+.checkout-container {
+  max-width: 700px;
+  margin: 2.5rem auto;
+  background: var(--color-fondo-input);
+  border-radius: var(--borde-radius);
+  box-shadow: var(--sombra-suave);
+  padding: 2.5rem 2rem 2rem 2rem;
+  width: calc(100% - 2rem);
+  max-width: min(700px, calc(100vw - 2rem));
+}
+
+.checkout-title {
+  text-align: center;
+  color: var(--verde-oscuro);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* ====== Formulario principal ====== */
+.checkout-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.checkout-form-col {
+  flex: 1 1 260px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: var(--color-fondo-seccion);
+  border-radius: 10px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  box-shadow: var(--sombra-input);
+  width: 100%;
+}
+
+/* ====== Estilos de labels ====== */
+.checkout-form label {
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.3rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* ====== Estilos de inputs y selects ====== */
+.checkout-form input, 
+.checkout-form select {
+  width: 100%;
+  border: 1.5px solid var(--color-borde);
+  border-radius: var(--borde-radius-input);
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  background: var(--color-fondo-input);
+  transition: border 0.2s, box-shadow 0.2s;
+  margin-bottom: 0.2rem;
+  box-sizing: border-box;
+  font-family: inherit;
+  max-width: 100%;
+}
+
+.checkout-form input:focus, 
+.checkout-form select:focus {
+  border: 1.5px solid var(--color-borde-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+}
+
+/* ====== Estilos de textarea ====== */
+.checkout-form textarea {
+  width: 100%;
+  border: 1.5px solid var(--color-borde);
+  border-radius: var(--borde-radius-input);
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  background: var(--color-fondo-input);
+  transition: border 0.2s, box-shadow 0.2s;
+  margin-bottom: 0.2rem;
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.checkout-form textarea:focus {
+  border: 1.5px solid var(--color-borde-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+}
+
+/* ====== Mejoras específicas para textarea de instrucciones especiales ====== */
+.checkout-form textarea[name="instrucciones"],
+.checkout-form textarea[id="instrucciones"],
+.checkout-form textarea[placeholder*="instrucciones"],
+.checkout-form textarea[placeholder*="especiales"] {
+  min-height: 100px;
+  max-height: 200px;
+  padding: 1rem 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  background: linear-gradient(135deg, #f8fffa 0%, #fff 100%);
+  border: 2px solid var(--color-borde);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow-y: auto;
+}
+
+.checkout-form textarea[name="instrucciones"]:focus,
+.checkout-form textarea[id="instrucciones"]:focus,
+.checkout-form textarea[placeholder*="instrucciones"]:focus,
+.checkout-form textarea[placeholder*="especiales"]:focus {
+  border-color: var(--color-borde-focus);
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.15), inset 0 1px 3px rgba(0,0,0,0.05);
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.checkout-form textarea[name="instrucciones"]:hover,
+.checkout-form textarea[id="instrucciones"]:hover,
+.checkout-form textarea[placeholder*="instrucciones"]:hover,
+.checkout-form textarea[placeholder*="especiales"]:hover {
+  border-color: #b8d4a8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ====== Placeholder mejorado para instrucciones ====== */
+.checkout-form textarea[name="instrucciones"]::placeholder,
+.checkout-form textarea[id="instrucciones"]::placeholder,
+.checkout-form textarea[placeholder*="instrucciones"]::placeholder,
+.checkout-form textarea[placeholder*="especiales"]::placeholder {
+  color: #8a9a8a;
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.checkout-form textarea[name="instrucciones"]:focus::placeholder,
+.checkout-form textarea[id="instrucciones"]:focus::placeholder,
+.checkout-form textarea[placeholder*="instrucciones"]:focus::placeholder,
+.checkout-form textarea[placeholder*="especiales"]:focus::placeholder {
+  opacity: 0.5;
+}
+
+/* ====== Contador de caracteres para instrucciones ====== */
+.instrucciones-container {
+  position: relative;
+  width: 100%;
+}
+
+.instrucciones-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: #8a9a8a;
+  background: rgba(255,255,255,0.9);
+  padding: 2px 6px;
+  border-radius: 10px;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.instrucciones-counter.active {
+  opacity: 1;
+  color: var(--color-borde-focus);
+  font-weight: 600;
+}
+
+/* ====== Estilos para el label de instrucciones ====== */
+.checkout-form label[for="instrucciones"],
+.checkout-form label:has(+ textarea[name="instrucciones"]),
+.checkout-form label:has(+ textarea[id="instrucciones"]) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.checkout-form label[for="instrucciones"]::before,
+.checkout-form label:has(+ textarea[name="instrucciones"])::before,
+.checkout-form label:has(+ textarea[id="instrucciones"])::before {
+  content: "📝";
+  font-size: 1.1rem;
+}
+
+/* ====== Grupo de formulario adicional ====== */
+.form-group {
+  margin-top: 1.2rem;
+  background: var(--color-fondo-seccion);
+  border-radius: 10px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  box-shadow: var(--sombra-input);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ====== Mensaje de tarjeta ====== */
+#mensajeTarjeta {
+  display: none;
+  color: #007bff;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background: rgba(0, 123, 255, 0.1);
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ====== Resumen del pedido ====== */
+.checkout-resumen {
+  background: var(--color-fondo-resumen);
+  border-radius: 12px;
+  box-shadow: var(--sombra-input);
+  padding: 1.2rem 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.checkout-resumen h3 {
+  color: var(--verde-oscuro);
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.checkout-resumen table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.02rem;
+  min-width: 300px;
+}
+
+.checkout-resumen th, 
+.checkout-resumen td {
+  padding: 0.5rem 0.3rem;
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 150px;
+}
+
+.checkout-resumen th {
+  background: var(--color-header-resumen);
+  color: var(--verde-oscuro);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.checkout-resumen tr:nth-child(even) {
+  background: var(--color-fondo-resumen-alt);
+}
+
+.checkout-resumen tr:nth-child(odd) {
+  background: var(--color-fondo-input);
+}
+
+.checkout-resumen-total {
+  text-align: right;
+  font-size: 1.15rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  padding: 0.5rem 0;
+}
+
+/* ====== Botón de checkout ====== */
+.checkout-btn {
+  width: 100%;
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+  background: var(--verde-oscuro);
+  color: #fff;
+  border: none;
+  border-radius: var(--borde-radius-btn);
+  font-weight: 700;
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 8px rgba(46,204,64,0.08);
+  transition: background 0.2s, transform 0.1s;
+  display: block;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.checkout-btn:hover {
+  background: #229c31;
+  transform: translateY(-1px);
+}
+
+.checkout-btn:active {
+  transform: translateY(0);
+}
+
+/* ====== Responsividad para PC (1200px+) ====== */
+@media (min-width: 1200px) {
+  .checkout-container {
+    max-width: 800px;
+    padding: 3rem 2.5rem 2.5rem 2.5rem;
+  }
+  
+  .checkout-title {
+    font-size: 2.2rem;
+  }
+  
+  .checkout-form {
+    gap: 2.5rem;
+  }
+  
+  .checkout-form-col {
+    flex: 1 1 300px;
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  }
+}
+
+/* ====== Responsividad para tablet (768px - 1199px) ====== */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .checkout-container {
+    max-width: 650px;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .checkout-title {
+    font-size: 1.8rem;
+  }
+  
+  .checkout-form {
+    gap: 1.5rem;
+  }
+  
+  .checkout-form-col {
+    flex: 1 1 280px;
+    padding: 1.2rem 1rem 1rem 1rem;
+  }
+  
+  .checkout-form input, 
+  .checkout-form select,
+  .checkout-form textarea {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.9rem;
+  }
+  
+  .checkout-btn {
+    font-size: 1rem;
+    padding: 0.7rem 0;
+  }
+}
+
+/* ====== Responsividad para móvil (hasta 767px) ====== */
+@media (max-width: 767px) {
+  .checkout-container {
+    margin: 1rem auto;
+    padding: 1.2rem 1rem 1rem 1rem;
+    border-radius: 12px;
+    width: calc(100% - 1rem);
+    max-width: calc(100vw - 1rem);
+  }
+  
+  .checkout-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .checkout-form {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .checkout-form-col, 
+  .form-group {
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
+    min-width: unset;
+    flex: 1 1 auto;
+  }
+  
+  .checkout-form input, 
+  .checkout-form select,
+  .checkout-form textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .checkout-form label {
+    font-size: 0.9rem;
+  }
+  
+  .checkout-resumen {
+    padding: 1rem 0.8rem;
+  }
+  
+  .checkout-resumen table {
+    font-size: 0.9rem;
+    min-width: 250px;
+  }
+  
+  .checkout-resumen th, 
+  .checkout-resumen td {
+    padding: 0.4rem 0.2rem;
+    max-width: 120px;
+  }
+  
+  .checkout-btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+    margin-top: 1rem;
+  }
+}
+
+/* ====== Responsividad para móvil pequeño (hasta 480px) ====== */
+@media (max-width: 480px) {
+  .checkout-container {
+    margin: 0.5rem auto;
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
+    border-radius: 10px;
+  }
+  
+  .checkout-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-form-col, 
+  .form-group {
+    padding: 0.8rem 0.6rem 0.6rem 0.6rem;
+  }
+  
+  .checkout-form input, 
+  .checkout-form select,
+  .checkout-form textarea {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+  }
+  
+  .checkout-form label {
+    font-size: 0.85rem;
+  }
+  
+  .checkout-resumen {
+    padding: 0.8rem 0.6rem;
+  }
+  
+  .checkout-resumen table {
+    font-size: 0.8rem;
+    min-width: 200px;
+  }
+  
+  .checkout-resumen th, 
+  .checkout-resumen td {
+    padding: 0.3rem 0.1rem;
+    max-width: 100px;
+  }
+  
+  .checkout-resumen h3 {
+    font-size: 1rem;
+  }
+  
+  .checkout-resumen-total {
+    font-size: 1rem;
+  }
+  
+  .checkout-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 0;
+  }
+  
+  #mensajeTarjeta {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}
+
+/* ====== Mejoras de accesibilidad ====== */
+.checkout-form input:invalid,
+.checkout-form select:invalid,
+.checkout-form textarea:invalid {
+  border-color:   var(--color-borde);
+}
+
+.checkout-form input:invalid:focus,
+.checkout-form select:invalid:focus,
+.checkout-form textarea:invalid:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+/* ====== Estados de carga ====== */
+.checkout-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.checkout-btn:disabled:hover {
+  background: #ccc;
+  transform: none;
+}
+
+/* ====== Animaciones suaves ====== */
+.checkout-container {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== Animación de entrada para textarea de instrucciones ====== */
+.checkout-form textarea[name="instrucciones"],
+.checkout-form textarea[id="instrucciones"],
+.checkout-form textarea[placeholder*="instrucciones"],
+.checkout-form textarea[placeholder*="especiales"] {
+  animation: slideInTextarea 0.5s ease-out;
+}
+
+@keyframes slideInTextarea {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== Estados especiales para textarea de instrucciones ====== */
+.checkout-form textarea[name="instrucciones"]:not(:placeholder-shown),
+.checkout-form textarea[id="instrucciones"]:not(:placeholder-shown),
+.checkout-form textarea[placeholder*="instrucciones"]:not(:placeholder-shown),
+.checkout-form textarea[placeholder*="especiales"]:not(:placeholder-shown) {
+  border-color: #a8d4a8;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ====== Scrollbar personalizado para textarea de instrucciones ====== */
+.checkout-form textarea[name="instrucciones"]::-webkit-scrollbar,
+.checkout-form textarea[id="instrucciones"]::-webkit-scrollbar,
+.checkout-form textarea[placeholder*="instrucciones"]::-webkit-scrollbar,
+.checkout-form textarea[placeholder*="especiales"]::-webkit-scrollbar {
+  width: 6px;
+}
+
+.checkout-form textarea[name="instrucciones"]::-webkit-scrollbar-track,
+.checkout-form textarea[id="instrucciones"]::-webkit-scrollbar-track,
+.checkout-form textarea[placeholder*="instrucciones"]::-webkit-scrollbar-track,
+.checkout-form textarea[placeholder*="especiales"]::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.checkout-form textarea[name="instrucciones"]::-webkit-scrollbar-thumb,
+.checkout-form textarea[id="instrucciones"]::-webkit-scrollbar-thumb,
+.checkout-form textarea[placeholder*="instrucciones"]::-webkit-scrollbar-thumb,
+.checkout-form textarea[placeholder*="especiales"]::-webkit-scrollbar-thumb {
+  background: var(--color-borde);
+  border-radius: 3px;
+}
+
+.checkout-form textarea[name="instrucciones"]::-webkit-scrollbar-thumb:hover,
+.checkout-form textarea[id="instrucciones"]::-webkit-scrollbar-thumb:hover,
+.checkout-form textarea[placeholder*="instrucciones"]::-webkit-scrollbar-thumb:hover,
+.checkout-form textarea[placeholder*="especiales"]::-webkit-scrollbar-thumb:hover {
+  background: var(--color-borde-focus);
+}
+
+/* ====== Área de instrucciones especiales por pizza mejorada ====== */
+.instrucciones-especiales-area {
+  background: #f8fffa;
+  border-radius: 10px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 1px 6px rgba(44,204,64,0.04);
+}
+
+.instrucciones-especiales-area label,
+.checkout-form label[for="instrucciones"] {
+  color: var(--color-texto);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+.instrucciones-especiales-area .nombre-pizza {
+  color: var(--color-texto);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.98rem;
+}
+
+.checkout-form textarea[name="instrucciones"],
+.checkout-form textarea[id="instrucciones"],
+.checkout-form textarea[placeholder*="instrucciones"],
+.checkout-form textarea[placeholder*="especiales"] {
+  background: #fff;
+  border: 1.5px solid var(--color-borde);
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(44,204,64,0.06);
+  color: var(--color-texto);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  min-height: 80px;
+  max-height: 180px;
+  margin-bottom: 0.5rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.checkout-form textarea[name="instrucciones"]:focus,
+.checkout-form textarea[id="instrucciones"]:focus,
+.checkout-form textarea[placeholder*="instrucciones"]:focus,
+.checkout-form textarea[placeholder*="especiales"]:focus {
+  border-color: var(--color-borde-focus);
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.13);
+  background: #fff;
+}
+
+.checkout-form textarea[name="instrucciones"]::placeholder,
+.checkout-form textarea[id="instrucciones"]::placeholder,
+.checkout-form textarea[placeholder*="instrucciones"]::placeholder,
+.checkout-form textarea[placeholder*="especiales"]::placeholder {
+  color: #888;
+  font-style: italic;
+  opacity: 1;
+  font-size: 0.97rem;
+}
+
+/* Mejorar contraste de textos deshabilitados */
+.checkout-form label,
+.checkout-form .nombre-pizza,
+.checkout-form textarea {
+  opacity: 1 !important;
+}
+
+/* Responsive para área de instrucciones */
+@media (max-width: 767px) {
+  .instrucciones-especiales-area {
+    padding: 0.8rem 0.5rem 0.7rem 0.5rem;
+  }
+  .checkout-form textarea[name="instrucciones"],
+  .checkout-form textarea[id="instrucciones"],
+  .checkout-form textarea[placeholder*="instrucciones"],
+  .checkout-form textarea[placeholder*="especiales"] {
+    font-size: 0.92rem;
+    padding: 0.7rem 0.8rem;
+    min-height: 60px;
+  }
+}
+@media (max-width: 480px) {
+  .instrucciones-especiales-area {
+    padding: 0.6rem 0.3rem 0.5rem 0.3rem;
+  }
+  .checkout-form textarea[name="instrucciones"],
+  .checkout-form textarea[id="instrucciones"],
+  .checkout-form textarea[placeholder*="instrucciones"],
+  .checkout-form textarea[placeholder*="especiales"] {
+    font-size: 0.88rem;
+    padding: 0.6rem 0.6rem;
+    min-height: 40px;
+  }
+}
+.instrucciones-especiales-textarea,
+.notas-adicionales-textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1.5px solid #d0e6c1; /* verde claro */
+  border-radius: 10px;
+  background: #fff;
+  color: #222e3c;
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 1px 6px rgba(44,204,64,0.04);
+  transition: border 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.instrucciones-especiales-textarea:focus,
+.notas-adicionales-textarea:focus {
+  border-color: #2ecc40; /* verde principal */
+  box-shadow: 0 0 0 2px rgba(46,204,64,0.10);
+  outline: none;
+}
+
+.instrucciones-especiales-textarea::placeholder,
+.notas-adicionales-textarea::placeholder {
+  color: #7ed957; /* verde claro, puedes ajustar */
+  font-style: italic;
+  opacity: 1;
+}

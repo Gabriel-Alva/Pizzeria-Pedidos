@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Pedido - Paladar del Inca</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'verde-principal': '#2ecc40',
+            'verde-claro': '#d0e6c1',
+            'verde-oscuro': '#229c31',
+            'naranja': '#ff9800',
+            'gris-claro': '#f6f7fb',
+            'gris-texto': '#222e3c'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header con navegación -->
+  <header class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-verde-principal rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 12a2 2 0 114 0 2 2 0 01-4 0zm2-8a2 2 0 100 4 2 2 0 000-4z"/>
+            </svg>
+          </div>
+          <h1 class="text-xl font-bold text-gray-900">Paladar del Inca</h1>
+        </div>
+        <button onclick="window.location.href='index.html'" 
+                class="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center space-x-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          <span>Volver al menú</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+      
+      <!-- Título del checkout -->
+      <div class="bg-gradient-to-r from-verde-principal to-verde-oscuro px-6 py-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 flex items-center justify-center space-x-3">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m6 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"/>
+          </svg>
+          <span>Finalizar Pedido</span>
+        </h2>
+        <p class="text-green-100 text-lg">
+          Completa tus datos para recibir tu pedido
+        </p>
+      </div>
+
+      <!-- Formulario y resumen -->
+      <div class="p-6 lg:p-8">
+        <form id="checkoutForm" class="space-y-8">
+          
+          <!-- Información personal -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Columna izquierda - Datos personales -->
+            <div class="space-y-6">
+              <div class="bg-gray-50 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                  <span class="w-8 h-8 bg-verde-principal rounded-lg flex items-center justify-center text-white mr-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                  </span>
+                  Información Personal
+                </h3>
+                
+                <div class="space-y-4">
+                  <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
+                      Nombre completo *
+                    </label>
+                    <input id="nombre" name="nombre" type="text" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde-principal focus:border-verde-principal transition-colors duration-200"
+                           placeholder="Tu nombre completo">
+                  </div>
+                  
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                      Email *
+                    </label>
+                    <input id="email" name="email" type="email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde-principal focus:border-verde-principal transition-colors duration-200"
+                           placeholder="tucorreo@email.com">
+                  </div>
+                  
+                  <div>
+                    <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">
+                      Teléfono *
+                    </label>
+                    <input id="telefono" name="telefono" type="tel" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde-principal focus:border-verde-principal transition-colors duration-200"
+                           placeholder="Tu número de contacto">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha - Entrega y pago -->
+            <div class="space-y-6">
+              <div class="bg-gray-50 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                  <span class="w-8 h-8 bg-verde-principal rounded-lg flex items-center justify-center text-white mr-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                  </span>
+                  Entrega y Pago
+                </h3>
+                
+                <div class="space-y-4">
+                  <div>
+                    <label for="direccion" class="block text-sm font-medium text-gray-700 mb-2">
+                      Dirección de entrega *
+                    </label>
+                    <input id="direccion" name="direccion" type="text" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde-principal focus:border-verde-principal transition-colors duration-200"
+                           placeholder="Calle, número, referencia...">
+                  </div>
+                  
+                  <div>
+                    <label for="notas" class="block text-sm font-medium text-gray-700 mb-2">
+                      Notas adicionales
+                    </label>
+                    <textarea id="notas" name="notas" rows="3"
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde-principal focus:border-verde-principal transition-colors duration-200 resize-none"
+                              placeholder="Instrucciones especiales, preferencias, etc."></textarea>
+                  </div>
+                  
+                  <div>
+                    <label for="metodo_pago" class="block text-sm font-medium text-gray-700 mb-2">
+                      Método de pago *
+                    </label>
+                    <select id="metodo_pago" name="metodo_pago" required 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde-principal focus:border-verde-principal transition-colors duration-200">
+                      <option value="efectivo">Efectivo</option>
+                      <option value="tarjeta">Tarjeta</option>
+                    </select>
+                    <div id="mensajeTarjeta" class="hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                      <p class="text-blue-800 text-sm flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                        </svg>
+                        <span>Puedes pagar con tarjeta al recibir tu pedido</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumen del pedido -->
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+              <span class="w-8 h-8 bg-verde-principal rounded-lg flex items-center justify-center text-white mr-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </span>
+              Resumen del Pedido
+            </h3>
+            
+            <div id="checkoutResumenTabla" class="overflow-x-auto">
+              <!-- Aquí se insertará la tabla del resumen -->
+            </div>
+            
+            <div id="checkoutInstruccionesItems" class="mt-4">
+              <!-- Aquí se insertarán las instrucciones especiales -->
+            </div>
+            
+            <div id="checkoutTotal" class="mt-6 pt-4 border-t border-green-200">
+              <!-- Aquí se insertará el total -->
+            </div>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="space-y-4">
+            <button type="button" onclick="enviarPedido()" 
+                    class="w-full bg-gradient-to-r from-verde-principal to-verde-oscuro text-white font-semibold py-4 px-6 rounded-xl hover:from-verde-oscuro hover:to-verde-principal transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl">
+              <span class="flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>Confirmar Pedido</span>
+              </span>
+            </button>
+            
+            <div id="checkoutMsg" class="hidden p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+              <p class="text-green-800 font-semibold flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>¡Pedido registrado exitosamente! Te contactaremos pronto.</span>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="text-center text-gray-600">
+        <p>&copy; 2025 Paladar del Inca. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/checkout.js"></script>
+  <script>
+    // Mostrar/ocultar mensaje de tarjeta
+    document.getElementById('metodo_pago').addEventListener('change', function() {
+      const mensajeTarjeta = document.getElementById('mensajeTarjeta');
+      if (this.value === 'tarjeta') {
+        mensajeTarjeta.classList.remove('hidden');
+      } else {
+        mensajeTarjeta.classList.add('hidden');
+      }
+    });
+
+    // Animación de entrada
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.querySelector('main');
+      container.style.opacity = '0';
+      container.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+        container.style.transition = 'all 0.5s ease-out';
+        container.style.opacity = '1';
+        container.style.transform = 'translateY(0)';
+      }, 100);
+    });
+  </script>
+</body>
+</html> 

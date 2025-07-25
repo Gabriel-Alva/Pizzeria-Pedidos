@@ -1,0 +1,29 @@
+{
+    "name": "sistema-pizzeria/servicio-notificaciones",
+    "description": "Microservicio para la gestión y envío de notificaciones.",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "slim/slim": "^4.0",
+        "slim/psr7": "^1.0",
+        "nyholm/psr7": "^1.2",
+        "nyholm/psr7-server": "^1.0",
+        "vlucas/phpdotenv": "^5.0",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:8004 -t publico",
+        "test": "phpunit"
+    }
+}

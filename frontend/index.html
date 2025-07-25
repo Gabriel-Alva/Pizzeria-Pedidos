@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Pizzería - Pedidos en Cusco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER estilo Rappi -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between py-2 px-4">
+      <!-- Logo de la pizzería -->
+      <div class="flex-shrink-0 mb-2 md:mb-0">
+        <img src="https://static.vecteezy.com/system/resources/previews/011/157/909/non_2x/pizzeria-emblem-on-blackboard-pizza-logo-template-emblem-for-cafe-restaurant-or-food-delivery-service-vector.jpg" alt="Pizzería Logo" class="h-14 w-14 rounded-full border-2 border-yellow-500 shadow-md">
+      </div>
+      <!-- Barra de búsqueda responsive -->
+      <div class="flex-1 flex justify-center md:justify-start mb-2 md:mb-0 md:ml-4">
+        <input type="text" class="w-full max-w-xs md:max-w-md px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400" id="searchBar" placeholder="Buscar pizzerías o productos...">
+      </div>
+      <!-- Navegación principal -->
+      <nav class="hidden md:flex space-x-4 ml-4">
+        <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navMenu">Menú</a>
+        <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navNosotros">Nosotros</a>
+        <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navContactanos">Contáctanos</a>
+        <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navUbicanos">Ubícanos</a>
+      </nav>
+      <!-- Acciones del usuario -->
+      <div class="flex items-center space-x-2 ml-4">
+        <button type="button" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded transition" onclick="window.location.href='login.html'">Ingresar</button>
+        <button type="button" class="bg-white border border-yellow-500 text-yellow-600 font-bold py-1 px-3 rounded hover:bg-yellow-50 transition" onclick="window.location.href='registro.html'">Registrarme</button>
+        <button class="cart-icon flex items-center gap-2 ml-2 text-gray-700 font-semibold cursor-pointer hover:bg-green-100 px-2 py-1 rounded transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007 17h10a1 1 0 00.95-.68l3.58-8.59A1 1 0 0021 7H7.42M7 13V6a1 1 0 011-1h3m4 0h2a1 1 0 011 1v7" /></svg>
+          <span>Carrito (<span id="cartCount">0</span>)</span>
+        </button>
+      </div>
+    </div>
+    <!-- Navegación móvil -->
+    <nav class="flex md:hidden justify-center space-x-4 pb-2">
+      <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navMenu">Menú</a>
+      <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navNosotros">Nosotros</a>
+      <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navContactanos">Contáctanos</a>
+      <a href="#" class="text-gray-700 hover:text-yellow-600 font-semibold transition" id="navUbicanos">Ubícanos</a>
+    </nav>
+    <!--
+      Comentario: El header ahora utiliza utilidades de Tailwind CSS para lograr un diseño responsivo y moderno. 
+      Se han reemplazado las clases personalizadas por clases de Tailwind, asegurando que el logo, la barra de búsqueda, la navegación y las acciones del usuario se adapten a diferentes tamaños de pantalla.
+    -->
+  </header>
+
+
+  <div class="main-layout flex flex-col md:flex-row max-w-6xl mx-auto mt-8 px-2 md:px-6 gap-8 min-w-0">
+    <!-- PANEL LATERAL DE CATEGORÍAS -->
+    <aside class="sidebar-categorias w-full md:w-1/4 mb-4 md:mb-0 bg-white rounded-xl shadow p-4 md:p-6 flex flex-col items-center border border-green-200" id="sidebarCategorias">
+      <!-- Las categorías se llenarán dinámicamente -->
+    </aside>
+    
+    <!-- CONTENIDO PRINCIPAL: Menú de Pizzas -->
+    <main class="contenido flex-1 min-w-0 flex flex-col items-center pb-8">
+
+      <div id="contenido" class="w-full min-w-0"></div>
+    </main>
+    <!--
+      Comentario: El área de contenido y el sidebar ahora son más responsivos en móvil.
+    -->
+  </div>
+
+  <!-- MODAL para detalles de pizza -->
+  <div id="pizzaModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="modal-content bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 relative">
+      <button id="closeModalBtn" class="modal-close absolute top-2 right-2 text-2xl text-gray-500 hover:text-red-500">&times;</button>
+      <div class="modal-body flex flex-col md:flex-row items-center">
+        <img id="modalPizzaImg" src="" alt="Pizza" class="modal-image w-40 h-40 object-cover rounded-lg shadow-md mb-4 md:mb-0 md:mr-6">
+        <div class="modal-info flex-1">
+          <h2 id="modalPizzaNombre" class="text-2xl font-bold mb-2">Nombre Pizza</h2>
+          <ul id="modalPizzaIngredientes" class="modal-ingredientes list-disc list-inside mb-2"></ul>
+          <div class="modal-options mb-4">
+            <div class="option-group mb-2">
+              <label for="modalPizzaTamano" class="font-semibold"><b>Tamaño:</b></label>
+              <select id="modalPizzaTamano" class="select-tamano border rounded px-2 py-1 ml-2">
+                <option value="pequena">Pequeña</option>
+                <option value="mediana">Mediana (+$5)</option>
+                <option value="grande">Grande (+$10)</option>
+              </select>
+            </div>
+            <div class="option-group mb-2">
+              <label for="modalPizzaCantidad" class="font-semibold"><b>Cantidad:</b></label>
+              <input id="modalPizzaCantidad" type="number" min="1" value="1" class="cantidad-input border rounded px-2 py-1 w-16 ml-2">
+              <span id="modalCantidadError" class="error-message text-red-500 text-xs ml-2"></span>
+            </div>
+            <div id="modalPizzaPrecio" class="precio-total font-bold text-lg text-yellow-600"><b>Precio:</b> $0.00</div>
+          </div>
+          <div class="modal-actions flex space-x-2">
+            <button id="modalAgregarBtn" class="btn registro bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition">Añadir al carrito</button>
+            <button id="modalOrdenarBtn" class="btn ingreso bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded transition">Ordenar ahora</button>
+          </div>
+        </div>
+      </div>
+      <!--
+        Comentario: El modal de pizza ahora es responsivo y usa colores originales, con clases de Tailwind para el fondo, bordes y botones.
+      -->
+    </div>
+  </div>
+
+  <!-- MODAL de Carrito a pantalla completa -->
+  <div id="carritoModal" class="carrito-modal fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+    <div class="carrito-modal-content bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 relative">
+      <div class="carrito-header flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-bold">Tu Carrito</h2>
+        <button id="cerrarCarritoBtn" class="carrito-close text-2xl text-gray-500 hover:text-red-500">&times;</button>
+      </div>
+      <div id="carritoContenido" class="carrito-body"></div>
+      <!--
+        Comentario: El modal de carrito ahora es responsivo y usa clases de Tailwind para fondo, bordes y botones.
+      -->
+    </div>
+  </div>
+
+  <!-- Chatbot Flotante -->
+  <div id="chatbot-fab" class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-yellow-500 hover:bg-yellow-600 rounded-full shadow-lg cursor-pointer transition-all duration-200">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8 8 0 0 1-8 8zm-2-7a1 1 0 1 1 1-1a1 1 0 0 1-1 1zm4 0a1 1 0 1 1 1-1a1 1 0 0 1-1 1z"/></svg>
+  </div>
+  <div id="chatbot-window" class="fixed bottom-24 right-6 z-50 w-80 max-w-full bg-white rounded-xl shadow-2xl border border-yellow-400 flex flex-col transition-all duration-300 opacity-0 pointer-events-none scale-95">
+    <div class="flex items-center justify-between px-4 py-3 bg-yellow-500 rounded-t-xl">
+      <span class="font-bold text-white">Asistente Paladar del Inca</span>
+      <button id="chatbot-close" class="text-white text-2xl font-bold hover:text-yellow-200 focus:outline-none">&times;</button>
+    </div>
+    <div id="chatbot-body" class="flex-1 px-4 py-3 overflow-y-auto space-y-2 bg-gray-50" style="min-height:180px; max-height:320px;"></div>
+    <div class="flex items-center gap-2 px-4 py-3 border-t border-yellow-100 bg-white">
+      <input id="chatbot-input" type="text" placeholder="Escribe tu mensaje..." class="flex-1 px-3 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-yellow-400 outline-none text-sm" />
+      <button id="chatbot-send" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l9-6 9 6-9 6-9-6zm0 6l9 6 9-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER SIMPLE -->
+  <footer class="bg-gray-900 text-white py-4 mt-8">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-sm">&copy; 2025 Paladar del Inca - Todos los derechos reservados</p>
+    </div>
+    <!--
+      Comentario: El footer ahora utiliza clases de Tailwind CSS para un fondo oscuro y texto centrado, manteniendo la simplicidad y responsividad.
+    -->
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+  <!-- Estilos responsive mejorados -->
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,2003 @@
+:root {
+    --verde-oscuro: #203500;
+    --acento: #2ecc40;
+    --gris-suave: #f4f4f4;
+    --gris-texto: #555;
+    --blanco: #fff;
+    --header-height: 80px;
+    --sidebar-width: 220px;
+    --container-max-width: 1200px;
+    --border-radius: 12px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff !important;
+    margin: 0;
+    color: var(--gris-texto);
+    line-height: 1.6;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--verde-oscuro);
+  }
+  
+  /* ===== HEADER MEJORADO ===== */
+  .header {
+    position: sticky;
+    top: 0;
+    background-color: #fff !important;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    transition: var(--transition);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+  
+  .logo img {
+    width: 40px;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .search-container {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+
+  .search-bar:focus {
+    outline: none;
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(46, 204, 64, 0.1);
+  }
+  
+  .nav-principal {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+  }
+
+  .nav-link:hover {
+    background: rgba(46, 204, 64, 0.1);
+    color: var(--acento);
+  }
+  
+  .acciones {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: inherit;
+  }
+  
+  .btn.ingreso {
+    background: transparent;
+    border: 2px solid var(--acento);
+    color: var(--acento);
+  }
+
+  .btn.ingreso:hover {
+    background: var(--acento);
+    color: var(--blanco);
+  }
+  
+  .btn.registro {
+    background: var(--acento);
+    color: var(--blanco);
+    border: 2px solid var(--acento);
+  }
+
+  .btn.registro:hover {
+    background: #27ae60;
+    border-color: #27ae60;
+    transform: translateY(-1px);
+  }
+  
+  .cart-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: var(--transition);
+  }
+
+  .cart-icon:hover {
+    background: rgba(46, 204, 64, 0.1);
+    color: var(--acento);
+  }
+
+
+  
+  .promo-banner {
+    background: var(--verde-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .promo-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .promo-link {
+    display: block;
+    font-size: 0.85rem;
+    color: #ddd;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+  }
+
+  .promo-link:hover {
+    color: var(--acento);
+  }
+  
+  .contenido {
+    padding: 2rem 1rem;
+    max-width: var(--container-max-width);
+    margin: auto;
+    background: #fff !important;
+  }
+  
+  h2 {
+    color: var(--verde-oscuro);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .grid-locales {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .card-local {
+    background: var(--blanco);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .card-local:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .card-local img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  
+  .card-local .info {
+    padding: 1rem;
+  }
+  
+  .card-local h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--verde-oscuro);
+  }
+  
+  .card-local p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+  
+  .etiqueta {
+    display: inline-block;
+    font-size: 0.75rem;
+    background: var(--acento);
+    color: var(--blanco);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    margin-top: 0.4rem;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--blanco);
+    color: #999;
+    font-size: 0.85rem;
+    margin-top: 3rem;
+  }
+
+  .footer-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  /* ===== MEJORAS RESPONSIVE EXISTENTES ===== */
+  @media (max-width: 768px) {
+    .header {
+      padding: 0.8rem 1rem;
+    }
+    
+    .header-container {
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    
+    .logo img {
+      width: 35px;
+    }
+    
+    .search-container {
+      order: 3;
+      flex: 1 1 100%;
+      max-width: none;
+      margin-top: 0.8rem;
+    }
+    
+    .acciones {
+      gap: 0.5rem;
+    }
+    
+    .btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
+    
+    .promo-banner {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .layout {
+      flex-direction: column;
+      padding: 0.5rem;
+      gap: 1rem;
+    }
+    
+    .sidebar-categorias {
+      width: 100%;
+      position: static;
+      top: unset;
+      margin-bottom: 1rem;
+      padding: 1rem 0.5rem;
+      box-shadow: none;
+      border-radius: 8px;
+    }
+    
+    .sidebar-categorias ul {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.7rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    .sidebar-categorias li {
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    }
+    
+    .sidebar-categorias li:hover,
+    .sidebar-categorias li.activo {
+      background-color: #203500;
+      color: #fff;
+    }
+    
+    .main-locales h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .grid-locales {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .card-local img {
+      height: 120px;
+    }
+    
+    .card-local .info {
+      padding: 0.7rem;
+    }
+    
+    .footer {
+      padding: 1.2rem 0.5rem;
+      font-size: 0.8rem;
+    }
+    
+    .contenido {
+      padding: 1rem 0.2rem;
+    }
+
+    .nav-principal {
+      display: none;
+    }
+
+
+  }
+
+  /* ===== MEJORAS PARA TABLETS ===== */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .header-container {
+      gap: 1rem;
+    }
+    
+    .nav-principal {
+      gap: 1rem;
+    }
+    
+    .nav-principal .nav-link {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.6rem;
+    }
+    
+    .search-container {
+      max-width: 300px;
+    }
+  }
+
+  /* ===== MEJORAS PARA MÓVILES PEQUEÑOS ===== */
+  @media (max-width: 480px) {
+    .header {
+      padding: 0.6rem 0.8rem;
+    }
+    
+    .acciones {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .btn {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+    }
+    
+    .cart-icon {
+      font-size: 1.2rem;
+    }
+    
+    .promo-banner {
+      padding: 0.6rem 0.8rem;
+      font-size: 0.85rem;
+    }
+    
+    .contenido {
+      padding: 0.8rem 0.3rem;
+    }
+  }
+
+  /* ===== ORIENTACIÓN LANDSCAPE EN MÓVILES ===== */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .header {
+      padding: 0.5rem 1rem;
+    }
+    
+    .search-container {
+      order: 2;
+      flex: 1;
+      max-width: 300px;
+      margin-top: 0;
+    }
+    
+
+  }
+
+  /* ===== ACCESIBILIDAD ===== */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
+  /* ===== MODO OSCURO DEL SISTEMA ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --gris-suave: #1a1a1a;
+      --gris-texto: #e0e0e0;
+      --blanco: #2d2d2d;
+    }
+  }
+
+  /* ===== FOCUS VISIBLE PARA ACCESIBILIDAD ===== */
+  .btn:focus-visible,
+  .nav-link:focus-visible,
+  .search-bar:focus-visible,
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+
+  /* ===== MEJORAS DE PERFORMANCE ===== */
+  .pizza-card-modern,
+  .card-local,
+  .btn {
+    will-change: transform;
+  }
+
+  /* ===== ESTILOS PARA CONTENIDO DINÁMICO ===== */
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .productos-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .productos-grid {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+  }
+
+  .layout {
+    display: flex;
+    max-width: 1300px;
+    margin: auto;
+    padding: 1rem;
+    gap: 2rem;
+  }
+  
+  /* PANEL IZQUIERDO */
+  .sidebar-categorias {
+    width: 220px;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    height: fit-content;
+    position: sticky;
+    top: 6rem;
+  }
+  
+  .sidebar-categorias h3 {
+    font-size: 1.1rem;
+    color: #203500;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-categorias ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-categorias li {
+    padding: 0.6rem 0.5rem;
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #333;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-categorias li:hover,
+  .sidebar-categorias li.activo {
+    background-color: #e8f5e9;
+    color: #203500;
+    font-weight: 600;
+  }
+  
+  /* Ajusta main cuando sidebar está presente */
+  .contenido {
+    flex: 1;
+  }
+  
+  .login-container, .register-container {
+    max-width: 370px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(32,53,0,0.12);
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .login-container h2, .register-container h2 {
+    color: #203500;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  .login-container form, .register-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .login-container label, .register-container label {
+    font-weight: 500;
+    color: #333;
+  }
+  .login-container input, .register-container input {
+    padding: 0.7rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f7f7f7;
+    color: #333;
+    outline: none;
+    transition: border 0.2s;
+  }
+  .login-container input:focus, .register-container input:focus {
+    border: 1.5px solid #8bc34a;
+  }
+  .login-container button[type="submit"], .register-container button[type="submit"] {
+    background: #8bc34a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .login-container button[type="submit"]:hover, .register-container button[type="submit"]:hover {
+    background: #203500;
+  }
+  .login-container p, .register-container p {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.97rem;
+  }
+  .login-container a, .register-container a {
+    color: #8bc34a;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .login-container a:hover, .register-container a:hover {
+    color: #203500;
+  }
+  #loginMessage, #registerMessage {
+    text-align: center;
+    margin-top: 0.7rem;
+    font-size: 0.98rem;
+    min-height: 1.2em;
+  }
+  
+  .panel-container {
+    max-width: 500px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(32,53,0,0.12);
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .panel-container h2 {
+    color: #203500;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  .panel-container p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+  .panel-container a {
+    color: #8bc34a;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .panel-container a:hover {
+    color: #203500;
+  }
+    
+/* === Estilos para el menú de pizzas === */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.producto-card {
+  background: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.5rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.producto-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.producto-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  background: #f8f8f8;
+}
+.producto-card .nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+.producto-card .info {
+  font-size: 0.95rem;
+  color: var(--gris-texto);
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+.producto-card .btn.agregar {
+  margin-top: 0.7rem;
+  background: var(--acento);
+  color: var(--blanco);
+  border: none;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.producto-card .btn.agregar:hover {
+  background: #27ae38;
+}
+
+/* Mejorar input de cantidad en el modal */
+#modalPizzaCantidad {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+  transition: border 0.2s;
+}
+#modalPizzaCantidad:focus {
+  border: 1.5px solid var(--acento);
+  box-shadow: 0 0 0 2px #2ecc4033;
+}
+    
+/* Banner decorativo para el menú */
+.menu-banner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: linear-gradient(90deg, #f8ffec 60%, #e0ffe7 100%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 2.5rem;
+}
+.menu-banner img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.menu-banner .banner-text {
+  flex: 1;
+}
+.menu-banner h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.1rem;
+  color: var(--verde-oscuro);
+}
+.menu-banner p {
+  margin: 0;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+/* Sección destacada del menú */
+.menu-section {
+  background: #f9fff4;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto 2.5rem auto;
+}
+.menu-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.5rem;
+}
+.menu-section .menu-sub {
+  text-align: center;
+  color: #888;
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+/* --- Rediseño moderno de tarjetas de pizza tipo Papa John's --- */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  gap: 2.2rem;
+  margin-top: 2rem;
+}
+.pizza-card-modern {
+  display: flex;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  overflow: hidden;
+  align-items: stretch;
+  min-height: 180px;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.pizza-card-modern:hover {
+  box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+  transform: translateY(-4px) scale(1.01);
+}
+.pizza-card-modern .pizza-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0;
+  background: #f8f8f8;
+  flex-shrink: 0;
+  margin: 0;
+}
+.pizza-card-modern .pizza-info {
+  flex: 1;
+  padding: 2.3rem 1.5rem 1.2rem 1.2rem; /* Suficiente espacio arriba para la etiqueta */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinear arriba */
+}
+.pizza-card-modern .pizza-nombre {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.3rem;
+}
+.pizza-card-modern .pizza-ingredientes {
+  color: #666;
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+.pizza-card-modern .pizza-precio {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.7rem;
+}
+.pizza-card-modern .pizza-disponible {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.3rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #27ae60;
+  background: #eafbe7;
+  border-radius: 8px;
+  padding: 0.2rem 0.8rem;
+}
+.pizza-card-modern .pizza-no-disponible {
+  color: #e74c3c;
+  background: #ffeaea;
+}
+.pizza-etiqueta-disponible {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.18em 0.8em;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  z-index: 2;
+  background: #e0ffe0;
+  color: #1a7f1a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border: 1.5px solid #b2e6b2;
+  min-width: unset;
+  max-width: 120px;
+  text-align: center;
+}
+.pizza-etiqueta-disponible.no-disponible {
+  background: #ffe0e0;
+  color: #b71c1c;
+  border: 1.5px solid #f5bcbc;
+}
+.pizza-card-modern .btn.agregar {
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 0.7em 0;
+}
+.pizza-card-modern .btn.agregar[disabled] {
+  background: #ccc !important;
+  color: #888 !important;
+  border: none;
+  cursor: not-allowed;
+}
+
+/* --- Mejorar formulario de contacto en dos columnas --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+}
+.contact-form .form-row {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+.contact-form .form-col {
+  flex: 1 1 240px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  justify-content: flex-start;
+}
+.contact-form .form-col:last-child .input-group {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.contact-form textarea {
+  min-height: 70px;
+  max-height: 120px;
+  height: 100%;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.contact-form input {
+  height: 40px;
+  box-sizing: border-box;
+}
+.contact-form label {
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1.5px solid #d0e6c1;
+  border-radius: 7px;
+  padding: 0.7rem 1rem 0.7rem 2.5rem;
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+  background: #f8fffa;
+  transition: border 0.2s;
+  position: relative;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1.5px solid var(--acento);
+  outline: none;
+  background: #f3ffe6;
+}
+.contact-form .input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #b2c7a7;
+  pointer-events: none;
+}
+.contact-form .input-group {
+  position: relative;
+}
+.contact-form button {
+  width: 60%;
+  margin: 1.5rem auto 0 auto;
+  font-size: 1.1rem;
+  background: #2ecc40;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 8px rgba(46,204,64,0.08);
+  transition: background 0.2s;
+  display: block;
+}
+.contact-form button:hover {
+  background: #229c31;
+}
+.contact-form .success-msg {
+  color: #27ae60;
+  background: #eafbe7;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  display: none;
+}
+
+/* Botón agregar al carrito (verde llamativo) */
+.pizza-card-modern .btn.agregar {
+  background: #2ecc40;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  margin-top: 0.7rem;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(46,204,64,0.08);
+}
+.pizza-card-modern .btn.agregar:hover {
+  background: #229c31;
+}
+
+/* Restaurar cuadrícula de pizzas a una sola sección */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  gap: 2.2rem;
+  margin-top: 2rem;
+}
+
+/* Eliminar estilos de agrupación por categoría */
+.categorias-grid, .categoria-columna, .categoria-titulo, .categoria-pizzas { display: unset !important; background: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
+
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .sidebar-categorias {
+    flex-direction: row;
+    min-width: unset;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    position: static;
+  }
+  
+  .sidebar-categorias .categoria-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.6rem 1rem;
+  }
+  
+  .header-container {
+    flex-wrap: wrap;
+  }
+  
+  .nav-principal {
+    display: none;
+  }
+  
+  .modal-content {
+    max-width: 90%;
+    margin: 1rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+    
+/* --- Modal de carrito mejorado --- */
+#carritoModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  z-index: 300;
+  overflow-y: auto;
+}
+#carritoModal .carrito-modal-content {
+  max-width: 540px;
+  margin: 4.5rem auto 2.5rem auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+@media (max-width: 600px) {
+  #carritoModal .carrito-modal-content {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    max-width: 98vw;
+  }
+}
+
+/* --- Tabla del carrito mejorada --- */
+.carrito-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #f9fff4;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+}
+.carrito-table th, .carrito-table td {
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+}
+.carrito-table th {
+  background: #eafbe7;
+  color: var(--verde-oscuro);
+  font-weight: 700;
+  border-bottom: 2px solid #d0e6c1;
+}
+.carrito-table tr:nth-child(even) {
+  background: #f4f8f2;
+}
+.carrito-table tr:nth-child(odd) {
+  background: #fff;
+}
+.carrito-table td {
+  border-bottom: 1px solid #eafbe7;
+}
+.carrito-table td:last-child {
+  border-bottom: none;
+}
+.carrito-table .btn-quitar {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.98rem;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carrito-table .btn-quitar:hover {
+  background: #b93222;
+}
+@media (max-width: 700px) {
+  .contact-form .form-row {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+  .contact-form button {
+    width: 100%;
+    margin: 1.2rem 0 0 0;
+  }
+}
+    
+#pizzaModal, #carritoModal, .modal, .carrito-modal {
+  background: rgba(0,0,0,0.5) !important;
+}
+.modal-content, .carrito-modal-content {
+  background: #fff !important;
+  color: #222 !important;
+}
+    
+/* =============================
+   MEJORAS RESPONSIVE PARA MÓVIL
+   ============================= */
+@media (max-width: 600px) {
+  /* 1. Evitar scroll horizontal no deseado */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+  .productos-grid {
+    width: 100% !important;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+  /* 2. Ocultar cualquier imagen en la bienvenida en móvil */
+  [class*="bienvenida"] img,
+  .bienvenida img,
+  .contenido img,
+  .menu-section img {
+    display: none !important;
+  }
+  /* Solo ocultar la imagen del logo en la bienvenida, no las de las pizzas */
+  .bienvenida img:first-child,
+  [class*="bienvenida"] img:first-child {
+    display: none !important;
+  }
+  /* 1. Header fijo en la parte superior */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  }
+  /* Espacio para que el contenido no quede debajo del header */
+  body {
+    padding-top: 70px;
+    padding-bottom: 80px; /* Espacio extra para evitar corte al final */
+  }
+  .contenido {
+    margin-bottom: 1.5rem;
+  }
+  /* 1. Barra de categorías fija debajo del header */
+  .sidebar-categorias {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    z-index: 999;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin: 0;
+    padding: 0.5rem 0.2rem;
+  }
+  /* Espacio para que el contenido no quede debajo de la barra de categorías */
+  .contenido {
+    margin-top: 120px;
+  }
+  /* 2. Tarjetas de pizza más pequeñas y compactas */
+  .pizza-card-modern {
+    min-height: 120px;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7rem 0.5rem;
+  }
+  .pizza-card-modern .pizza-img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 0.5rem;
+  }
+  .pizza-card-modern .pizza-info {
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    text-align: center;
+  }
+  .pizza-card-modern .pizza-nombre {
+    font-size: 1rem;
+  }
+  .pizza-card-modern .pizza-ingredientes {
+    font-size: 0.9rem;
+  }
+  .pizza-card-modern .pizza-precio {
+    font-size: 1rem;
+  }
+  .pizza-card-modern .btn.agregar {
+    font-size: 0.95rem;
+    padding: 0.5em 0;
+    margin-top: 0.5rem;
+  }
+  /* 3. Modal de detalles de pizza centrado y adaptado */
+  .modal-content, .carrito-modal-content {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    max-width: 95vw !important;
+    width: 95vw !important;
+    min-width: unset !important;
+    border-radius: 14px !important;
+    padding: 1rem 0.5rem 1.2rem 0.5rem !important;
+  }
+  /* 4. Bienvenida sin logo, solo texto, márgenes y paddings ajustados */
+  .bienvenida-logo {
+    display: none !important;
+  }
+  .bienvenida-texto {
+    margin: 0.7rem 0.2rem 1.2rem 0.2rem !important;
+    padding: 0.7rem 0.5rem !important;
+    font-size: 1.1rem !important;
+    text-align: left !important;
+  }
+  /* 5. Buscador más compacto y alineado */
+  .search-container {
+    max-width: 100vw;
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0 0.2rem;
+  }
+  .search-bar {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+  }
+  /* 6. Márgenes y paddings generales más compactos */
+  .contenido, .menu-section {
+    padding: 0.7rem 0.2rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  .productos-grid {
+    gap: 0.7rem !important;
+    margin-top: 1rem !important;
+  }
+  /* 1. Buscador con límite visual y padding lateral */
+  .search-container {
+    max-width: 98vw;
+    width: 98vw;
+    margin: 0.2rem auto 0.2rem auto;
+    padding: 0 1vw;
+    box-sizing: border-box;
+  }
+  .search-bar {
+    font-size: 0.92rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: 6px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1.5px solid #b2e6b2;
+    box-shadow: 0 1px 6px rgba(46,204,64,0.07);
+  }
+
+  /* 2. Header fijo sin corte al final */
+  body {
+    padding-top: 70px;
+    padding-bottom: 80px; /* Espacio extra para evitar corte al final */
+  }
+  .contenido {
+    margin-bottom: 1.5rem;
+  }
+
+  /* 3. Tarjetas con espacio igual a la derecha e izquierda */
+  .productos-grid {
+    width: 100vw;
+    box-sizing: border-box;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 0.4rem !important;
+    margin-top: 0.5rem !important;
+  }
+  .pizza-card-modern {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+  /* 1. Solo ocultar el logo de bienvenida, no otras imágenes */
+  .bienvenida-logo img {
+    display: none !important;
+  }
+  /* Si el logo está en la primera imagen de .bienvenida, pero no en las tarjetas */
+  .bienvenida > img:first-child {
+    display: none !important;
+  }
+
+  /* 2. Evitar corte de letras en bienvenida y menú */
+  .bienvenida, .menu-section, .contenido {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 2vw !important;
+    padding-right: 2vw !important;
+    overflow: visible !important;
+    word-break: break-word !important;
+  }
+  h2, .menu-section h2 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.7rem !important;
+    padding-left: 1vw !important;
+    padding-right: 1vw !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .menu-section .menu-sub {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.2rem !important;
+    padding-left: 1vw !important;
+    padding-right: 1vw !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  /* 2. Botones de agregar al pedido del mismo tamaño */
+  .pizza-card-modern .btn.agregar {
+    width: 100%;
+    min-width: 160px;
+    max-width: 260px;
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.7rem 0 !important;
+    font-size: 1rem !important;
+  }
+
+  /* 1. Solo ocultar el logo de bienvenida, no otras imágenes */
+  .bienvenida-logo img {
+    display: none !important;
+  }
+  /* Elimino cualquier otro selector que oculte imágenes */
+
+  /* 2. Ajustes visuales para el modal de pizza en móvil */
+  .modal-content, .carrito-modal-content {
+    max-width: 97vw !important;
+    width: 97vw !important;
+    min-width: unset !important;
+    border-radius: 14px !important;
+    padding: 0.7rem 0.2rem 1rem 0.2rem !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    box-sizing: border-box;
+  }
+  .modal-content img, .carrito-modal-content img {
+    max-width: 90vw !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.7rem !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .modal-content h2, .carrito-modal-content h2 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+    text-align: center;
+  }
+  .modal-content label, .carrito-modal-content label {
+    font-size: 0.98rem !important;
+  }
+  .modal-content .btn, .carrito-modal-content .btn {
+    font-size: 1rem !important;
+    padding: 0.7rem 0 !important;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+    
+/* =============================
+   ESTILOS MIGRADOS DE index.html
+   ============================= */
+
+/* Layout principal mejorado */
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Sidebar de categorías */
+.sidebar-categorias {
+  min-width: var(--sidebar-width);
+  background: #f8fffa;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  color: var(--verde-oscuro);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  height: fit-content;
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+}
+
+.sidebar-categorias .categoria-item {
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.sidebar-categorias .categoria-item:hover, 
+.sidebar-categorias .categoria-item.active {
+  background: #eafbe7;
+  color: #229c31;
+  font-weight: 600;
+  border-color: #229c31;
+}
+
+/* Header responsive mejorado */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+/* Aumentar la separación entre el buscador y el menú en la cabecera para escritorio */
+.header-container {
+  gap: 2.5rem; /* Espacio más amplio entre los elementos principales del header */
+}
+
+/* Si se requiere aún más separación solo entre el buscador y el menú, se puede usar margin-left en .nav-principal */
+.nav-principal {
+  margin-left: 1.5rem; /* Separación extra entre el buscador y la navegación principal */
+}
+
+.search-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.nav-principal {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--verde-oscuro);
+  margin: 3px 0;
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.menu-movil {
+  display: none;
+  background: var(--blanco);
+  border-top: 1px solid #eee;
+  padding: 1rem;
+}
+
+.nav-movil {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Modal mejorado */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: var(--blanco);
+  border-radius: var(--border-radius);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Botón de cerrar modal - Reforzado para máxima visibilidad */
+.modal-close {
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid #333 !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  z-index: 9999 !important; /* Z-index muy alto para estar por encima de todo */
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: var(--transition) !important;
+  color: #333 !important; /* Color oscuro para máxima visibilidad */
+  font-weight: bold !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important; /* Sombra para destacar */
+}
+
+.modal-close:hover {
+  background: #333 !important;
+  color: white !important;
+  transform: scale(1.1) !important;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.modal-info h2 {
+  margin-bottom: 1rem;
+  color: var(--verde-oscuro);
+}
+
+.modal-ingredientes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modal-ingredientes li {
+  background: #f0f0f0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+
+.modal-options {
+  margin-bottom: 1.5rem;
+}
+
+.option-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.select-tamano {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.cantidad-input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.precio-total {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  margin: 1rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  padding: 0.8rem 1rem;
+}
+
+/* Carrito modal mejorado */
+.carrito-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.carrito-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--blanco);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.carrito-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Media Queries Responsive del index.html migradas aquí */
+@media (max-width: 1024px) {
+  .main-layout {
+    gap: 1.5rem;
+    padding: 0 0.8rem;
+  }
+  .sidebar-categorias {
+    min-width: 180px;
+    padding: 1.2rem 0.8rem;
+  }
+  .nav-principal {
+    gap: 1rem;
+  }
+  .nav-principal .nav-link {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sidebar-categorias {
+    flex-direction: row;
+    min-width: unset;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    position: static;
+  }
+  .sidebar-categorias .categoria-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.6rem 1rem;
+  }
+  .header-container {
+    flex-wrap: wrap;
+  }
+  .nav-principal {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .menu-movil {
+    display: block;
+  }
+  .menu-movil.active {
+    display: block;
+  }
+  .modal-content {
+    max-width: 90%;
+    margin: 1rem;
+  }
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    padding: 0.8rem 1rem;
+  }
+  .header-container {
+    gap: 0.8rem;
+  }
+  .logo img {
+    width: 35px;
+  }
+  .search-container {
+    order: 3;
+    flex: 1 1 100%;
+    max-width: none;
+    margin-top: 0.8rem;
+  }
+  .acciones {
+    gap: 0.5rem;
+  }
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .promo-banner {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+  .main-layout {
+    padding: 0 0.5rem;
+  }
+  .sidebar-categorias {
+    padding: 0.8rem;
+    gap: 0.6rem;
+  }
+  .sidebar-categorias .categoria-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .modal-body {
+    padding: 1.5rem;
+  }
+  .modal-image {
+    max-height: 200px;
+  }
+  .option-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .select-tamano,
+  .cantidad-input {
+    width: 100%;
+  }
+  .carrito-modal-content {
+    width: 95%;
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    padding: 0.6rem 0.8rem;
+  }
+  .acciones {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  .cart-icon {
+    font-size: 1.2rem;
+  }
+  .promo-banner {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .main-layout {
+    padding: 0 0.3rem;
+  }
+  .sidebar-categorias {
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+  .sidebar-categorias .categoria-item {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+  .modal-body {
+    padding: 1rem;
+  }
+  .modal-image {
+    max-height: 150px;
+  }
+  .modal-info h2 {
+    font-size: 1.3rem;
+  }
+  .modal-ingredientes li {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .carrito-modal-content {
+    width: 98%;
+    padding: 1rem;
+    margin: 0.3rem;
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+  .search-container {
+    order: 2;
+    flex: 1;
+    max-width: 300px;
+    margin-top: 0;
+  }
+  .sidebar-categorias {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.8rem;
+  }
+  .modal-content {
+    max-height: 85vh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gris-suave: #1a1a1a;
+    --gris-texto: #e0e0e0;
+    --blanco: #2d2d2d;
+  }
+}
+    
+/* Forzar visibilidad de imágenes de pizzas y modal */
+.pizza-card-modern img,
+.modal-content img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+    
+@media (max-width: 600px) {
+  /* Centrado perfecto del modal en móvil */
+  #pizzaModal.modal, #carritoModal.carrito-modal {
+    align-items: center !important;
+    justify-content: center !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2000 !important;
+    background: rgba(0,0,0,0.5) !important;
+    padding: 0 !important;
+  }
+  #pizzaModal .modal-content, #carritoModal .carrito-modal-content {
+    margin: 0 !important;
+    position: static !important;
+    left: unset !important;
+    top: unset !important;
+    transform: none !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+    display: block !important;
+    max-width: 97vw !important;
+    width: 97vw !important;
+  }
+}
+    
+/* Modales ocultos por defecto */
+#pizzaModal,
+#carritoModal {
+  display: none !important;
+}
+/* Si se usa la clase .activo, mostrar el modal */
+#pizzaModal.activo,
+#carritoModal.activo {
+  display: flex !important;
+}
+    
+/* Ajustes específicos para el botón de cerrar modal en pantallas pequeñas */
+@media (max-width: 600px) {
+  /* Botón de cerrar modal más pequeño y pegado al borde en móviles */
+  .modal-close {
+    top: 0.5rem !important; /* Menor separación superior */
+    right: 0.5rem !important; /* Menor separación derecha */
+    width: 32px !important; /* Botón más pequeño */
+    height: 32px !important;
+    font-size: 1.2rem !important; /* Letra más pequeña */
+  }
+}
+    
+/* Ajuste de visibilidad para el texto de las secciones informativas */
+.seccion-info, .seccion-nosotros, .seccion-ubicacion, .contenido-info, .contenido-nosotros, .contenido-ubicacion {
+  color: #222 !important; /* Texto mucho más oscuro para mejor contraste */
+}
+
+/* Asegurar que los párrafos y listas dentro de esas secciones también sean oscuros */
+.seccion-info p, .seccion-info ul, .seccion-info li,
+.seccion-nosotros p, .seccion-nosotros ul, .seccion-nosotros li,
+.seccion-ubicacion p, .seccion-ubicacion ul, .seccion-ubicacion li,
+.contenido-info p, .contenido-info ul, .contenido-info li,
+.contenido-nosotros p, .contenido-nosotros ul, .contenido-nosotros li,
+.contenido-ubicacion p, .contenido-ubicacion ul, .contenido-ubicacion li {
+  color: #222 !important; /* Color oscuro para todos los textos relevantes */
+}
+
+/* Si el texto sigue viéndose claro, forzar el color en todos los p y li dentro de .contenido principal */
+.contenido p, .contenido ul, .contenido li {
+  color: #222 !important;
+}
+
+/* Ajuste para formularios del panel admin: que los inputs, textareas y selects no se salgan del formulario */
+.form-admin input,
+.form-admin textarea,
+.form-admin select {
+  width: 100% !important; /* Ocupar todo el ancho del contenedor padre */
+  box-sizing: border-box !important; /* Incluir padding y borde en el ancho */
+  margin-bottom: 1rem;
+}
+
+/* Asegurar que el formulario tenga padding y no desborde */
+.form-admin {
+  padding: 1.5rem 1rem;
+  overflow-x: hidden;
+}
+
+/* Si los formularios no tienen la clase .form-admin, forzar el ajuste en formularios dentro de modales */
+.modal-content form input,
+.modal-content form textarea,
+.modal-content form select {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin-bottom: 1rem;
+}
+    
