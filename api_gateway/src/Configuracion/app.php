@@ -15,7 +15,7 @@ return [
             'rutas_protegidas' => ['/pedidos', '/pedidos/{id}', '/pagos'] // Todas las de pedidos son protegidas
         ],
         'usuarios' => [
-            'url' => 'http://localhost:8003',
+            'url' => 'https://servicio-usuarios-gn6a.onrender.com',
             'rutas_protegidas' => ['/usuarios', '/usuarios/{id}']
         ],
         'notificaciones' => [
