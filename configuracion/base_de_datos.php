@@ -1,10 +1,9 @@
 <?php
-// Configuración para XAMPP/phpMyAdmin
 return [
     'driver' => 'mysql',
-    'host' => '127.0.0.1',
-    'database' => 'pizzeria_bd',
-    'username' => 'root',
-    'password' => '',
+    'host' => getenv('DB_HOST') ?: '127.0.0.1',
+    'database' => getenv('DB_DATABASE') ?: 'pizzeria_bd',
+    'username' => getenv('DB_USERNAME') ?: 'root',
+    'password' => getenv('DB_PASSWORD') ?: '',
     'charset' => 'utf8mb4',
 ];
