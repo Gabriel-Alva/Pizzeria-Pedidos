@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mensaje de carga
     addMessage('Consultando el menú de pizzas...', 'bot');
     try {
-      const res = await fetch('http://localhost:8002/pizzas');
+      const res = await fetch('https://api-gateway-zfzn.onrender.com/productos/pizzas');
       if (!res.ok) throw new Error('No se pudo obtener el menú');
       const pizzas = await res.json();
       if (!Array.isArray(pizzas) || pizzas.length === 0) {

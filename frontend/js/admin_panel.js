@@ -156,7 +156,7 @@ async function loadProductos() {
   grid.innerHTML = '<p>Cargando productos...</p>';
   try {
     // Cambia la URL según tu configuración real
-    const res = await fetch('http://localhost:8000/productos/pizzas');
+    const res = await fetch('https://api-gateway-zfzn.onrender.com/productos/pizzas');
     const productos = await res.json();
     grid.innerHTML = '';
     productos.forEach(producto => {
