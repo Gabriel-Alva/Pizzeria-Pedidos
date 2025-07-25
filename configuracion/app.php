@@ -13,11 +13,11 @@ return [
             'puerto' => 8000
         ],
         'productos' => [
-            'url' => 'http://localhost:8002',
+            'url' => 'https://servicio-productos.onrender.com',
             'puerto' => 8002
         ],
         'usuarios' => [
-            'url' => 'http://localhost:8003',
+            'url' => 'https://servicio-usuarios-gn6a.onrender.com',
             'puerto' => 8003
         ],
         'pedidos' => [

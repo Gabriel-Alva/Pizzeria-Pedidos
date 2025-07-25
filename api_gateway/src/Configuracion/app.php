@@ -7,7 +7,7 @@ return [
     'jwt_secret' =>  getenv('JWT_SECRET'), // Debe ser la misma que en servicio_usuarios
     'microservicios' => [
         'productos' => [
-            'url' => 'http://localhost:8002',
+            'url' => 'https://servicio-productos.onrender.com',
             'rutas_protegidas' => ['/pizzas/crear', '/pizzas/{id}', '/ingredientes/crear', '/ingredientes/{id}'] // Ejemplos
         ],
         'pedidos' => [
