@@ -108,7 +108,7 @@ window.addEventListener('input', function(e) {
     if (!payloadPedido.usuario_id) delete payloadPedido.usuario_id;
     try {
       // 1. Crear pedido
-      const resPedido = await fetch('http://localhost:8000/pedidos/pedidos', {
+      const resPedido = await fetch('https://servicio-pedidos.onrender.com/pedidos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payloadPedido)

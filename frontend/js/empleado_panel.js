@@ -222,7 +222,7 @@ async function loadPedidosEmpleado() {
     const token = localStorage.getItem('jwt');
     const filtroEstado = document.getElementById('filtroEstado').value;
     // Endpoint dedicado para pedidos del empleado
-    let url = 'http://localhost:8000/empleado/pedidos';
+    let url = 'https://servicio-pedidos.onrender.com/empleado/pedidos';
     if (filtroEstado) {
       url += `?estado=${filtroEstado}`;
     }
