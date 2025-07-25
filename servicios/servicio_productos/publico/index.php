@@ -31,7 +31,7 @@ $app->addBodyParsingMiddleware();
 $app->addErrorMiddleware(true, true, true); // (displayErrorDetails, logErrors, logErrorDetails)
 
 // Cargar configuración de la base de datos
-$dbConfig = require __DIR__ . '/../../../configuracion/base_de_datos.php';
+$dbConfig = require __DIR__ . '/../configuracion/base_de_datos.php';
 
 // Configuración de la base de datos (Usaremos PDO para simplicidad)
 $container = $app->getContainer(); // Asegúrate de que el contenedor esté disponible si usas inyección de dependencias
