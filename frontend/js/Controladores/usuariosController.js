@@ -24,7 +24,7 @@ export async function loginUsuario({ email, password }) {
 }
 
 export async function registrarUsuario({ nombre, apellido, email, password, telefono, direccion }) {
-  const res = await fetch('http://localhost:8000/registro', {
+  const res = await fetch('https://api-gateway-zfzn.onrender.com/registro', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ 

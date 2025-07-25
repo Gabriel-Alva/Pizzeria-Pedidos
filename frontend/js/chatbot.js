@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function showRecomendaciones() {
     addMessage('Buscando las pizzas mejor calificadas para ti...', 'bot');
     try {
-      const res = await fetch('http://localhost:8003/usuarios/pizzas/mejor-calificadas');
+      const res = await fetch('https://servicio-usuarios-gn6a.onrender.com/usuarios/pizzas/mejor-calificadas');
       if (!res.ok) throw new Error('No se pudo obtener recomendaciones');
       const data = await res.json();
       if (!Array.isArray(data) || data.length === 0) {
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Obtener los datos completos de la pizza (nombre, imagen, etc.)
         let pizzaInfo = null;
         try {
-          const resPizza = await fetch(`http://localhost:8002/pizzas/${pizza.pizza_id}`);
+          const resPizza = await fetch(`https://servicio-productos.onrender.com/pizzas/${pizza.pizza_id}`);
           if (resPizza.ok) pizzaInfo = await resPizza.json();
         } catch {}
         const pizzaDiv = document.createElement('div');

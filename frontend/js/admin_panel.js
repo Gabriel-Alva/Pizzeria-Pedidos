@@ -208,7 +208,7 @@ let productoActual = null;
 
 async function abrirModalEditar(id) {
   // Busca el producto actual (puedes optimizar guardando la lista)
-  const res = await fetch(`http://localhost:8000/productos/pizzas/${id}`);
+  const res = await fetch(`https://servicio-productos.onrender.com/productos/pizzas/${id}`);
   const producto = await res.json();
   productoActual = producto;
   document.getElementById('editNombre').value = producto.nombre;
@@ -246,7 +246,7 @@ document.getElementById('formEditarProducto').onsubmit = async function(e) {
     disponible: document.getElementById('editDisponible').value === "1" ? true : false
   };
   try {
-    await fetch(`http://localhost:8000/productos/pizzas/${productoActual.id}`, {
+    await fetch(`https://servicio-productos.onrender.com/productos/pizzas/${productoActual.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -428,7 +428,7 @@ async function loadPedidos() {
           const token = localStorage.getItem('jwt');
           const headers = { 'Content-Type': 'application/json' };
           if (token) headers['Authorization'] = `Bearer ${token}`;
-          const response = await fetch(`http://localhost:8000/pedidos/pedidos/${id}/estado`, {
+          const response = await fetch(`https://servicio-pedidos.onrender.com/pedidos/pedidos/${id}/estado`, {
             method: 'PATCH', headers, body: JSON.stringify({ estado: nuevoEstado })
           });
           if (response.ok) {
@@ -456,7 +456,7 @@ async function loadPedidos() {
           const token = localStorage.getItem('jwt');
           const headers = { 'Content-Type': 'application/json' };
           if (token) headers['Authorization'] = `Bearer ${token}`;
-          const response = await fetch(`http://localhost:8000/pedidos/pedidos/${id}/estado-pago`, {
+          const response = await fetch(`https://servicio-pedidos.onrender.com/pedidos/pedidos/${id}/estado-pago`, {
             method: 'PATCH', headers, body: JSON.stringify({ estado_pago: nuevoEstadoPago })
           });
           if (response.ok) {
@@ -487,7 +487,7 @@ async function loadPedidos() {
           const token = localStorage.getItem('jwt');
           const headers = { 'Content-Type': 'application/json' };
           if (token) headers['Authorization'] = `Bearer ${token}`;
-          const response = await fetch(`http://localhost:8000/pedidos/pedidos/${id}`, { method: 'DELETE', headers });
+          const response = await fetch(`https://servicio-pedidos.onrender.com/pedidos/pedidos/${id}`, { method: 'DELETE', headers });
           if (response.ok) {
             const tr = this.closest('tr');
             tr.style.background = '#ffe6e6';
@@ -565,8 +565,8 @@ async function mostrarDetallePedido(id) {
       headers['Authorization'] = `Bearer ${token}`;
     }
     
-    console.log('Haciendo petición a:', `http://localhost:8000/pedidos/pedidos/${id}`); // Debug
-    const response = await fetch(`http://localhost:8000/pedidos/pedidos/${id}`, {
+    console.log('Haciendo petición a:', `https://servicio-pedidos.onrender.com/pedidos/pedidos/${id}`); // Debug
+    const response = await fetch(`https://servicio-pedidos.onrender.com/pedidos/pedidos/${id}`, {
       headers: headers
     });
     
@@ -660,19 +660,19 @@ async function loadReportes() {
       if (desde) params.push(`desde=${desde}`);
       if (hasta) params.push(`hasta=${hasta}`);
       // 1. Pedidos diarios (por rango de fechas)
-      let urlDiarios = 'http://localhost:8000/pedidos/pedidos/reportes/diarios';
+      let urlDiarios = 'https://servicio-pedidos.onrender.com/pedidos/pedidos/reportes/diarios';
       if (params.length) urlDiarios += '?' + params.join('&');
       const resDiarios = await fetch(urlDiarios, { headers });
       const pedidosDiarios = await resDiarios.json();
       // 2. Pedidos por estado (por estado y rango de fechas)
-      let urlEstados = 'http://localhost:8000/pedidos/pedidos/reportes/por-estado';
+      let urlEstados = 'https://servicio-pedidos.onrender.com/pedidos/pedidos/reportes/por-estado';
       const paramsEstados = [...params];
       if (estado) paramsEstados.push(`estado=${estado}`);
       if (paramsEstados.length) urlEstados += '?' + paramsEstados.join('&');
       const resEstados = await fetch(urlEstados, { headers });
       const pedidosPorEstado = await resEstados.json();
       // 3. Pizzas más pedidas (por rango de fechas y top N)
-      let urlMasPedidas = 'http://localhost:8000/pedidos/pedidos/reportes/mas-pedidas';
+      let urlMasPedidas = 'https://servicio-pedidos.onrender.com/pedidos/pedidos/reportes/mas-pedidas';
       const paramsPizzas = [...params];
       if (topPizzas) paramsPizzas.push(`top=${topPizzas}`);
       if (paramsPizzas.length) urlMasPedidas += '?' + paramsPizzas.join('&');
@@ -1111,7 +1111,7 @@ if (formEditarPedido) {
     });
     try {
       const token = localStorage.getItem('jwt'); // Obtener el token JWT
-      const res = await fetch(`http://localhost:8000/pedidos/pedidos/${pedidoId}`, {
+      const res = await fetch(`https://servicio-pedidos.onrender.com/pedidos/pedidos/${pedidoId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -1257,7 +1257,7 @@ window.eliminarProducto = async function(id) {
   if (!id) return;
   if (!confirm('¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.')) return;
   try {
-    const res = await fetch(`http://localhost:8000/productos/pizzas/${id}`, {
+    const res = await fetch(`https://servicio-productos.onrender.com/productos/pizzas/${id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     });
