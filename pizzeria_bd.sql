@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2025 a las 11:42:19
+-- Tiempo de generación: 25-07-2025 a las 03:57:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,73 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pizzeria_bd`
 --
-CREATE DATABASE IF NOT EXISTS `pizzeria_bd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `pizzeria_bd`;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `clientes`
---
-
-CREATE TABLE `clientes` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `correo` varchar(255) NOT NULL,
-  `telefono` varchar(30) DEFAULT NULL,
-  `direccion` varchar(255) DEFAULT NULL,
-  `creado_en` timestamp NOT NULL DEFAULT current_timestamp(),
-  `actualizado_en` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ingredientes`
---
-
-CREATE TABLE `ingredientes` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `descripcion` text DEFAULT NULL,
-  `categoria` varchar(100) DEFAULT NULL,
-  `disponible` tinyint(1) DEFAULT 1,
-  `creado_en` timestamp NOT NULL DEFAULT current_timestamp(),
-  `actualizado_en` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `interacciones_chatbot`
---
-
-CREATE TABLE `interacciones_chatbot` (
-  `id` int(11) NOT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
-  `mensaje_usuario` text NOT NULL,
-  `respuesta_chatbot` text NOT NULL,
-  `fecha_interaccion` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `notificaciones`
---
-
-CREATE TABLE `notificaciones` (
-  `id` int(11) NOT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
-  `pedido_id` int(11) DEFAULT NULL,
-  `tipo` enum('estado_pedido','pago','entrega','promocion') NOT NULL,
-  `titulo` varchar(255) NOT NULL,
-  `mensaje` text NOT NULL,
-  `leido` tinyint(1) DEFAULT 0,
-  `enviado_en` timestamp NOT NULL DEFAULT current_timestamp(),
-  `leido_en` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -97,6 +30,7 @@ CREATE TABLE `notificaciones` (
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) DEFAULT NULL,
+  `empleado_id` int(11) DEFAULT NULL,
   `nombre_cliente` varchar(255) NOT NULL,
   `correo_cliente` varchar(255) NOT NULL,
   `telefono_cliente` varchar(20) DEFAULT NULL,
@@ -116,12 +50,25 @@ CREATE TABLE `pedidos` (
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `usuario_id`, `nombre_cliente`, `correo_cliente`, `telefono_cliente`, `direccion_entrega`, `monto_total`, `estado`, `estado_pago`, `metodo_pago`, `hora_entrega_estimada`, `hora_entrega_real`, `notas`, `creado_en`, `actualizado_en`) VALUES
-(13, NULL, 'Gabriel Alvarez', 'gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 24.90, 'entregado', 'pagado', 'efectivo', NULL, NULL, 'nn', '2025-07-12 22:35:04', '2025-07-12 22:52:22'),
-(14, NULL, 'Juan', 'juan@gmail.com', '987 654 321', 'Av. El Salvador E-5', 34.90, 'entregado', 'pagado', 'tarjeta', NULL, NULL, 'Sin cebolla', '2025-07-12 23:00:09', '2025-07-12 23:01:05'),
-(15, NULL, 'Gabriel Alvarez', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 54.90, 'entregado', 'pagado', 'efectivo', '2025-07-12 23:34:00', '2025-07-12 23:36:00', NULL, '2025-07-12 23:01:59', '2025-07-12 23:36:38'),
-(16, NULL, 'Gabriel Alvarez', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 104.50, 'entregado', 'pagado', 'tarjeta', NULL, NULL, NULL, '2025-07-14 02:20:14', '2025-07-14 02:56:58'),
-(17, NULL, 'Gabriel Alvarez', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 168.00, 'listo', 'pendiente', 'tarjeta', NULL, NULL, NULL, '2025-07-14 02:29:24', '2025-07-14 02:56:52');
+INSERT INTO `pedidos` (`id`, `usuario_id`, `empleado_id`, `nombre_cliente`, `correo_cliente`, `telefono_cliente`, `direccion_entrega`, `monto_total`, `estado`, `estado_pago`, `metodo_pago`, `hora_entrega_estimada`, `hora_entrega_real`, `notas`, `creado_en`, `actualizado_en`) VALUES
+(13, NULL, NULL, 'Gabriel Alvarez', 'gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 24.90, 'entregado', 'pagado', 'efectivo', NULL, NULL, 'nn', '2025-07-12 22:35:04', '2025-07-12 22:52:22'),
+(14, NULL, NULL, 'Juan', 'juan@gmail.com', '987 654 321', 'Av. El Salvador E-5', 34.90, 'entregado', 'pagado', 'tarjeta', NULL, NULL, 'Sin cebolla', '2025-07-12 23:00:09', '2025-07-12 23:01:05'),
+(15, NULL, NULL, 'Gabriel Alvarez', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 54.90, 'entregado', 'pagado', 'efectivo', '2025-07-12 23:34:00', '2025-07-12 23:36:00', NULL, '2025-07-12 23:01:59', '2025-07-12 23:36:38'),
+(16, NULL, NULL, 'Gabriel Alvarez', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 104.50, 'entregado', 'pagado', 'tarjeta', NULL, NULL, NULL, '2025-07-14 02:20:14', '2025-07-14 02:56:58'),
+(17, NULL, NULL, 'Gabriel Alvarez', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 168.00, 'entregado', 'pagado', 'tarjeta', NULL, NULL, NULL, '2025-07-14 02:29:24', '2025-07-20 01:06:47'),
+(18, NULL, NULL, 'Gabriel', 'Gabriel@gmail.com', '914035205', 'Av. Primavera C-8', 227.40, 'entregado', 'pagado', 'tarjeta', NULL, NULL, NULL, '2025-07-20 00:26:48', '2025-07-20 00:27:44'),
+(23, NULL, NULL, 'Cliente Prueba', 'prueba@test.com', '123456789', 'Calle de Prueba 123', 12.99, 'preparando', 'pagado', 'efectivo', NULL, NULL, NULL, '2025-07-20 00:44:25', '2025-07-20 23:21:54'),
+(26, 2, NULL, 'Cliente', 'cliente@pizzeria.com', '957 146 626', 'Av. Primavera C-8', 30.00, 'entregado', 'pendiente', NULL, NULL, NULL, NULL, '2025-07-24 01:47:54', '2025-07-24 02:25:39'),
+(28, 7, NULL, 'Gabriel', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 29.90, 'preparando', 'pendiente', 'Efectivo', NULL, NULL, NULL, '2025-07-24 21:31:11', '2025-07-24 23:16:14'),
+(29, NULL, NULL, 'Ana', 'Ana@gmail.com', '914 035 205', 'Av. Garcilaso  F-2', 25.00, 'entregado', 'pagado', 'efectivo', NULL, NULL, 'sin sebolla', '2025-07-24 22:07:55', '2025-07-24 23:32:07'),
+(30, 7, NULL, 'Gabriel', 'Gabriel@gmail.com', '957 146 262', 'Av. Primavera C-8', 84.90, 'pendiente', 'pendiente', 'Efectivo', NULL, NULL, NULL, '2025-07-24 23:38:42', '2025-07-24 23:38:42'),
+(31, NULL, NULL, 'Alberto', 'albert@gmail.com', '984 135 149', 'Av. Garcilaso  F-2', 30.00, 'pendiente', 'pendiente', 'tarjeta', NULL, NULL, NULL, '2025-07-24 23:51:57', '2025-07-24 23:51:57'),
+(32, 2, NULL, 'Cliente', 'cliente@pizzeria.com', '957 146 262', 'Av. Primavera C-8', 29.90, 'pendiente', 'pendiente', 'Efectivo', NULL, NULL, NULL, '2025-07-24 23:53:46', '2025-07-24 23:53:46'),
+(33, 2, NULL, 'Cliente', 'cliente@pizzeria.com', '957 146 262', 'Av. Primavera C-8', 24.90, 'pendiente', 'pendiente', 'Tarjeta', NULL, NULL, NULL, '2025-07-24 23:54:58', '2025-07-24 23:54:58'),
+(34, 2, NULL, 'Cliente', 'cliente@pizzeria.com', '957 146 262', 'Av. Primavera C-8', 26.00, 'pendiente', 'pendiente', 'Efectivo', NULL, NULL, NULL, '2025-07-24 23:57:04', '2025-07-24 23:57:04'),
+(35, 2, NULL, 'Cliente', 'cliente@pizzeria.com', '957 146 262', 'Av. Primavera C-8', 34.90, 'pendiente', 'pendiente', 'Efectivo', NULL, NULL, NULL, '2025-07-24 23:57:29', '2025-07-24 23:57:29'),
+(36, 2, NULL, 'Cliente', 'cliente@pizzeria.com', '957 146 262', 'Av. Primavera C-8', 44.40, 'pendiente', 'pendiente', 'Tarjeta', NULL, NULL, NULL, '2025-07-25 00:02:51', '2025-07-25 00:02:51'),
+(37, NULL, NULL, 'Alberto', 'albert@gmail.com', '984 135 149', 'Av. Garcilaso  F-2', 24.90, 'pendiente', 'pendiente', 'tarjeta', NULL, NULL, 'sin queso', '2025-07-25 00:05:08', '2025-07-25 00:05:08');
 
 -- --------------------------------------------------------
 
@@ -153,7 +100,25 @@ INSERT INTO `pedido_items` (`id`, `pedido_id`, `pizza_id`, `cantidad`, `precio_u
 (14, 16, 2, 3, 26.50, 79.50, NULL, '2025-07-14 02:20:14', 'pequena'),
 (15, 16, 3, 1, 25.00, 25.00, NULL, '2025-07-14 02:20:14', 'pequena'),
 (16, 17, 3, 3, 35.00, 105.00, NULL, '2025-07-14 02:29:24', 'grande'),
-(17, 17, 2, 2, 31.50, 63.00, NULL, '2025-07-14 02:29:24', 'mediana');
+(17, 17, 2, 2, 31.50, 63.00, NULL, '2025-07-14 02:29:24', 'mediana'),
+(18, 18, 2, 1, 26.50, 26.50, NULL, '2025-07-20 00:26:48', 'pequena'),
+(19, 18, 1, 1, 24.90, 24.90, NULL, '2025-07-20 00:26:48', 'pequena'),
+(20, 18, 7, 1, 26.00, 26.00, NULL, '2025-07-20 00:26:48', 'pequena'),
+(21, 18, 3, 6, 25.00, 150.00, NULL, '2025-07-20 00:26:48', 'pequena'),
+(28, 23, 1, 1, 12.99, 12.99, NULL, '2025-07-20 00:44:25', 'mediana'),
+(31, 26, 3, 1, 30.00, 30.00, NULL, '2025-07-24 01:47:54', 'mediana'),
+(33, 28, 1, 1, 29.90, 29.90, NULL, '2025-07-24 21:31:11', 'mediana'),
+(34, 29, 3, 1, 25.00, 25.00, NULL, '2025-07-24 22:07:55', 'pequena'),
+(35, 30, 3, 2, 30.00, 60.00, NULL, '2025-07-24 23:38:42', 'mediana'),
+(36, 30, 1, 1, 24.90, 24.90, NULL, '2025-07-24 23:38:42', 'pequena'),
+(37, 31, 3, 1, 30.00, 30.00, NULL, '2025-07-24 23:51:57', 'mediana'),
+(38, 32, 1, 1, 29.90, 29.90, NULL, '2025-07-24 23:53:46', 'mediana'),
+(39, 33, 1, 1, 24.90, 24.90, NULL, '2025-07-24 23:54:58', 'pequena'),
+(40, 34, 7, 1, 26.00, 26.00, NULL, '2025-07-24 23:57:04', 'pequena'),
+(41, 35, 1, 1, 34.90, 34.90, NULL, '2025-07-24 23:57:29', 'grande'),
+(42, 36, 1, 1, 24.90, 24.90, NULL, '2025-07-25 00:02:51', 'pequeña'),
+(43, 36, 20, 1, 19.50, 19.50, NULL, '2025-07-25 00:02:51', 'pequeña'),
+(44, 37, 1, 1, 24.90, 24.90, NULL, '2025-07-25 00:05:08', 'pequeña');
 
 -- --------------------------------------------------------
 
@@ -179,8 +144,8 @@ CREATE TABLE `pizzas` (
 --
 
 INSERT INTO `pizzas` (`id`, `nombre`, `descripcion`, `precio`, `url_imagen`, `categoria`, `disponible`, `ingredientes`, `creado_en`, `actualizado_en`) VALUES
-(1, 'Pizza Clásica', 'Pizza con ingredientes tradicionales', 24.90, 'https://i.pinimg.com/736x/11/4c/fb/114cfb3145787f6198cb3cdc6c6bb611.jpg', 'pizza', 1, 'queso, tomate, orégano', '2025-07-08 22:39:17', '2025-07-14 02:40:18'),
-(2, 'Pizza Pepperoni', 'Sabor fuerte y especiado', 26.50, 'https://i.pinimg.com/736x/10/d0/82/10d082f9cbaeefa3e9feb4951b50ef45.jpg', 'pizza', 1, 'queso, pepperoni, salsa de tomate', '2025-07-08 22:39:17', '2025-07-12 23:01:15'),
+(1, 'Pizza Clásica', 'Pizza con ingredientes tradicionales', 24.90, 'https://i.pinimg.com/736x/11/4c/fb/114cfb3145787f6198cb3cdc6c6bb611.jpg', 'pizza', 1, 'queso, tomate, orégano', '2025-07-08 22:39:17', '2025-07-24 02:24:07'),
+(2, 'Pizza Pepperoni', 'Sabor fuerte y especiado', 26.50, 'https://i.pinimg.com/736x/10/d0/82/10d082f9cbaeefa3e9feb4951b50ef45.jpg', 'pizza', 0, 'queso, pepperoni, salsa de tomate', '2025-07-08 22:39:17', '2025-07-20 00:01:29'),
 (3, 'Pizza Hawaiana', 'Con piña y jamón', 25.00, 'https://i.pinimg.com/736x/9d/b7/50/9db750a4eafcf1d1fb551520018c8bf6.jpg', 'pizza', 1, 'piña, jamón, queso', '2025-07-08 22:39:17', '2025-07-08 22:44:59'),
 (4, 'Pizza BBQ Pollo', 'Toque dulce y ahumado', 27.90, 'https://i.pinimg.com/736x/96/10/5e/96105e3bc37057ef7b54c51a6772449f.jpg', 'especial', 1, 'pollo, salsa bbq, cebolla, queso', '2025-07-08 22:39:17', '2025-07-08 22:45:21'),
 (5, 'Pizza Veggie', 'Ideal para vegetarianos', 23.50, 'https://i.pinimg.com/736x/a2/77/62/a27762213e366ae2e983b1f52eded727.jpg', 'vegana', 1, 'tomate, champiñones, aceitunas, espinaca', '2025-07-08 22:39:17', '2025-07-08 22:45:47'),
@@ -218,23 +183,15 @@ CREATE TABLE `pizzas_favoritas` (
 --
 
 INSERT INTO `pizzas_favoritas` (`id`, `usuario_id`, `pizza_id`, `fecha_agregado`) VALUES
-(3, 2, 2, '2025-07-14 22:26:30'),
-(4, 2, 1, '2025-07-14 22:26:31');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pizza_ingredientes`
---
-
-CREATE TABLE `pizza_ingredientes` (
-  `id` int(11) NOT NULL,
-  `pizza_id` int(11) NOT NULL,
-  `ingrediente_id` int(11) NOT NULL,
-  `cantidad` varchar(50) DEFAULT NULL,
-  `opcional` tinyint(1) DEFAULT 0,
-  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(35, 2, 6, '2025-07-24 02:18:27'),
+(37, 2, 8, '2025-07-24 02:18:29'),
+(40, 2, 5, '2025-07-24 02:21:47'),
+(41, 2, 4, '2025-07-24 02:21:48'),
+(45, 7, 1, '2025-07-24 21:26:20'),
+(46, 7, 3, '2025-07-24 21:26:22'),
+(48, 7, 5, '2025-07-24 22:01:06'),
+(49, 7, 6, '2025-07-24 22:01:06'),
+(50, 7, 4, '2025-07-24 22:01:08');
 
 -- --------------------------------------------------------
 
@@ -260,9 +217,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `correo`, `contrasena_hash`, `nombre`, `apellido`, `rol`, `telefono`, `activo`, `creado_en`, `actualizado_en`) VALUES
-(2, 'cliente@pizzeria.com', '$2y$10$5IQGNIpcjeHGyor0MAbDPeULDFcfJVn4QapA9uxCx1XvsO4T1xMJ6', 'Cliente', 'Regular', 'cliente', '987654321', 1, '2025-07-04 16:06:06', '2025-07-06 00:57:48'),
+(2, 'cliente@pizzeria.com', '$2y$10$VsiRvd7ptB1D/7FUimKgC.9c2BXXfvVPdnPRqrKEdnbsqwWvEpkX.', 'Cliente', 'Regular', 'cliente', '984 123 677', 1, '2025-07-04 16:06:06', '2025-07-24 21:56:15'),
 (3, 'admin@pizzeria.com', '$2y$10$1cEAlPCztcyv9VBz0eyOp.4dGmHsWgsJ0Sb5gnmdoq9fZjbDMc0hm', 'Admin', 'Principal', 'administrador', '123456789', 1, '2025-07-04 19:55:37', '2025-07-04 19:58:13'),
-(4, 'empleado@pizzeria.com', '$2y$10$kKX2LzXa7ekjfdokcU02IuMuvYZ.GAZHJ5HfGYxJdZTbKYXhDIqhi', 'Empleado', 'Pizzeria', 'empleado', '987654321', 1, '2025-07-04 19:55:37', '2025-07-04 19:59:03');
+(4, 'empleado@pizzeria.com', '$2y$10$kKX2LzXa7ekjfdokcU02IuMuvYZ.GAZHJ5HfGYxJdZTbKYXhDIqhi', 'Empleado', 'Pizzeria', 'empleado', '987654321', 1, '2025-07-04 19:55:37', '2025-07-04 19:59:03'),
+(7, 'Gabriel@gmail.com', '$2y$10$a1VCa2QBBUW8vosIT6iwIuoJsCziZy5jFsRzOhcfckL.IAVquN95G', 'Gabriel', 'Alvarez', 'cliente', '984 135 149', 1, '2025-07-24 21:25:31', '2025-07-24 21:56:38');
 
 -- --------------------------------------------------------
 
@@ -285,42 +243,25 @@ CREATE TABLE `usuario_pizza_interacciones` (
 --
 
 INSERT INTO `usuario_pizza_interacciones` (`id`, `usuario_id`, `pizza_id`, `tipo_interaccion`, `valor_interaccion`, `fecha_interaccion`, `creado_en`) VALUES
-(1, 2, 14, 'calificacion', 5.00, '2025-07-15 01:40:22', '2025-07-15 01:40:22');
+(1, 2, 14, 'calificacion', 5.00, '2025-07-15 01:40:22', '2025-07-15 01:40:22'),
+(2, 2, 2, 'calificacion', 4.00, '2025-07-23 00:12:09', '2025-07-23 00:12:09'),
+(3, 2, 1, 'calificacion', 4.00, '2025-07-23 00:12:14', '2025-07-23 00:12:14'),
+(4, 2, 3, 'calificacion', 4.00, '2025-07-23 00:12:29', '2025-07-23 00:12:29'),
+(5, 2, 6, 'calificacion', 4.00, '2025-07-23 00:12:33', '2025-07-23 00:12:33'),
+(6, 2, 4, 'calificacion', 3.00, '2025-07-23 01:18:46', '2025-07-23 01:18:46'),
+(7, 2, 5, 'calificacion', 1.00, '2025-07-23 01:19:31', '2025-07-23 01:19:31'),
+(8, 2, 11, 'calificacion', 1.00, '2025-07-23 01:30:34', '2025-07-23 01:30:34'),
+(9, 2, 19, 'calificacion', 4.00, '2025-07-23 23:45:14', '2025-07-23 23:45:14'),
+(10, 2, 9, 'calificacion', 2.00, '2025-07-24 00:43:43', '2025-07-24 00:43:43'),
+(11, 7, 1, 'calificacion', 4.00, '2025-07-24 21:26:18', '2025-07-24 21:26:18'),
+(12, 7, 2, 'calificacion', 4.00, '2025-07-24 21:31:25', '2025-07-24 21:31:25'),
+(13, 7, 3, 'calificacion', 4.00, '2025-07-24 21:31:28', '2025-07-24 21:31:28'),
+(14, 7, 4, 'calificacion', 2.00, '2025-07-24 21:31:30', '2025-07-24 21:31:30'),
+(15, 7, 5, 'calificacion', 4.00, '2025-07-24 21:31:32', '2025-07-24 21:31:32');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `correo` (`correo`);
-
---
--- Indices de la tabla `ingredientes`
---
-ALTER TABLE `ingredientes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
-
---
--- Indices de la tabla `interacciones_chatbot`
---
-ALTER TABLE `interacciones_chatbot`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
-
---
--- Indices de la tabla `notificaciones`
---
-ALTER TABLE `notificaciones`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_notificaciones_usuario_id` (`usuario_id`),
-  ADD KEY `idx_notificaciones_pedido_id` (`pedido_id`),
-  ADD KEY `idx_notificaciones_leido` (`leido`),
-  ADD KEY `idx_notificaciones_enviado_en` (`enviado_en`);
 
 --
 -- Indices de la tabla `pedidos`
@@ -329,7 +270,8 @@ ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_pedidos_usuario_id` (`usuario_id`),
   ADD KEY `idx_pedidos_estado` (`estado`),
-  ADD KEY `idx_pedidos_estado_pago` (`estado_pago`);
+  ADD KEY `idx_pedidos_estado_pago` (`estado_pago`),
+  ADD KEY `fk_pedidos_empleado` (`empleado_id`);
 
 --
 -- Indices de la tabla `pedido_items`
@@ -357,14 +299,6 @@ ALTER TABLE `pizzas_favoritas`
   ADD KEY `idx_pizzas_favoritas_pizza_id` (`pizza_id`);
 
 --
--- Indices de la tabla `pizza_ingredientes`
---
-ALTER TABLE `pizza_ingredientes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `pizza_id` (`pizza_id`,`ingrediente_id`),
-  ADD KEY `ingrediente_id` (`ingrediente_id`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -387,40 +321,16 @@ ALTER TABLE `usuario_pizza_interacciones`
 --
 
 --
--- AUTO_INCREMENT de la tabla `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `ingredientes`
---
-ALTER TABLE `ingredientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `interacciones_chatbot`
---
-ALTER TABLE `interacciones_chatbot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `notificaciones`
---
-ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_items`
 --
 ALTER TABLE `pedido_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `pizzas`
@@ -432,47 +342,29 @@ ALTER TABLE `pizzas`
 -- AUTO_INCREMENT de la tabla `pizzas_favoritas`
 --
 ALTER TABLE `pizzas_favoritas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `pizza_ingredientes`
---
-ALTER TABLE `pizza_ingredientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_pizza_interacciones`
 --
 ALTER TABLE `usuario_pizza_interacciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `interacciones_chatbot`
---
-ALTER TABLE `interacciones_chatbot`
-  ADD CONSTRAINT `interacciones_chatbot_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
-
---
--- Filtros para la tabla `notificaciones`
---
-ALTER TABLE `notificaciones`
-  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `notificaciones_ibfk_2` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`id`);
-
---
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
+  ADD CONSTRAINT `fk_pedidos_empleado` FOREIGN KEY (`empleado_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
@@ -488,13 +380,6 @@ ALTER TABLE `pedido_items`
 ALTER TABLE `pizzas_favoritas`
   ADD CONSTRAINT `fk_pizzas_favoritas_pizza` FOREIGN KEY (`pizza_id`) REFERENCES `pizzas` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_pizzas_favoritas_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `pizza_ingredientes`
---
-ALTER TABLE `pizza_ingredientes`
-  ADD CONSTRAINT `pizza_ingredientes_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizzas` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `pizza_ingredientes_ibfk_2` FOREIGN KEY (`ingrediente_id`) REFERENCES `ingredientes` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `usuario_pizza_interacciones`
