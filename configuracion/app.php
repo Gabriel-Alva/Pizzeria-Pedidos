@@ -21,7 +21,7 @@ return [
             'puerto' => 8003
         ],
         'pedidos' => [
-            'url' => 'http://localhost:8004',
+            'url' => 'https://servicio-pedidos.onrender.com',
             'puerto' => 8004
         ],
         'notificaciones' => [

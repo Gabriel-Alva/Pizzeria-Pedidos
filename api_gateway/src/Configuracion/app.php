@@ -11,7 +11,7 @@ return [
             'rutas_protegidas' => ['/pizzas/crear', '/pizzas/{id}', '/ingredientes/crear', '/ingredientes/{id}'] // Ejemplos
         ],
         'pedidos' => [
-            'url' => 'http://localhost:8004',
+            'url' => 'https://servicio-pedidos.onrender.com',
             'rutas_protegidas' => ['/pedidos', '/pedidos/{id}', '/pagos'] // Todas las de pedidos son protegidas
         ],
         'usuarios' => [
