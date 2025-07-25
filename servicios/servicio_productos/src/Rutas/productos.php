@@ -12,7 +12,7 @@ use App\Modelos\Ingrediente;
 use App\Modelos\PizzaIngrediente;
 
 // Configuración de la base de datos desde el archivo global
-$dbConfig = require __DIR__ . '/../../../../configuracion/base_de_datos.php';
+$dbConfig = require __DIR__ . '/../../configuracion/base_de_datos.php';
 $pdo = ConexionBD::obtenerInstancia($dbConfig)->obtenerConexion();
 
 // Crear instancias de los modelos
