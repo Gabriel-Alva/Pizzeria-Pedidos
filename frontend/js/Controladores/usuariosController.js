@@ -3,7 +3,7 @@
 // Controlador de autenticación para login y registro
 
 export async function loginUsuario({ email, password }) {
-  const res = await fetch('http://localhost:8000/login', {
+  const res = await fetch('https://api-gateway-zfzn.onrender.com/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, contrasena: password })

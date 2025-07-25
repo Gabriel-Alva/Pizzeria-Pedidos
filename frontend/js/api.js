@@ -1,5 +1,5 @@
 // api.js - Configuración de la API
-const API_GATEWAY_URL = 'http://localhost:8000';
+const API_GATEWAY_URL = 'https://api-gateway-zfzn.onrender.com';
 
 export async function obtenerPizzas() {
     const respuesta = await fetch(`${API_GATEWAY_URL}/productos/pizzas`);
