@@ -318,7 +318,7 @@ async function loadPedidos() {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    const resp = await fetch('https://servicio-pedidos.onrender.com/pedidos', {
+    const resp = await fetch('https://api-gateway-zfzn.onrender.com/pedidos', {
       headers: headers
     });
     if (!resp.ok) {

@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function showRecomendaciones() {
     addMessage('Buscando las pizzas mejor calificadas para ti...', 'bot');
     try {
-      const res = await fetch('https://servicio-usuarios-gn6a.onrender.com/usuarios/pizzas/mejor-calificadas');
+      const res = await fetch('https://api-gateway-zfzn.onrender.com/usuarios/pizzas/mejor-calificadas');
       if (!res.ok) throw new Error('No se pudo obtener recomendaciones');
       const data = await res.json();
       if (!Array.isArray(data) || data.length === 0) {
