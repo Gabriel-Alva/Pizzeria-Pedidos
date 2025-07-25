@@ -65,7 +65,7 @@ async function loadDashboard() {
   // Obtener token
   const token = localStorage.getItem('jwt');
   try {
-    const res = await fetch('http://localhost:8000/admin/dashboard', {
+    const res = await fetch('https://api-gateway-zfzn.onrender.com/admin/dashboard', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
     if (!res.ok) throw new Error('No autorizado o error en backend');
@@ -291,7 +291,7 @@ document.getElementById('formCrearProducto').onsubmit = async function(e) {
     disponible: document.getElementById('crearDisponible').value === "1" ? true : false
   };
   try {
-    await fetch('http://localhost:8000/productos/pizzas', {
+    await fetch('https://api-gateway-zfzn.onrender.com/productos/pizzas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

@@ -120,7 +120,7 @@ async function loadDashboardEmpleado() {
     // Obtener el token JWT almacenado tras el login
     const token = localStorage.getItem('jwt');
     // Solicitar los datos del dashboard del empleado al backend
-    const res = await fetch('http://localhost:8000/empleado/dashboard', {
+    const res = await fetch('https://api-gateway-zfzn.onrender.com/empleado/dashboard', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
     if (!res.ok) throw new Error('No autorizado o error en backend');
@@ -222,7 +222,7 @@ async function loadPedidosEmpleado() {
     const token = localStorage.getItem('jwt');
     const filtroEstado = document.getElementById('filtroEstado').value;
     // Endpoint dedicado para pedidos del empleado
-    let url = 'https://servicio-pedidos.onrender.com/empleado/pedidos';
+    let url = 'https://api-gateway-zfzn.onrender.com/empleado/pedidos';
     if (filtroEstado) {
       url += `?estado=${filtroEstado}`;
     }
@@ -301,7 +301,7 @@ function renderPedidosEmpleado(pedidos) {
   pedidos.forEach(async p => {
     try {
       const token = localStorage.getItem('jwt');
-      const res = await fetch(`http://localhost:8000/empleado/pedidos/${p.id}`, {
+      const res = await fetch(`https://api-gateway-zfzn.onrender.com/empleado/pedidos/${p.id}`, {
         headers: { 'Authorization': 'Bearer ' + token }
       });
       if (!res.ok) throw new Error();
@@ -340,7 +340,7 @@ async function actualizarEstadoPedido(pedidoId, nuevoEstado) {
   try {
     const token = localStorage.getItem('jwt');
     // Endpoint dedicado para actualizar estado de pedido por empleado
-    const res = await fetch(`http://localhost:8000/empleado/pedidos/${pedidoId}/estado`, {
+    const res = await fetch(`https://api-gateway-zfzn.onrender.com/empleado/pedidos/${pedidoId}/estado`, {
       method: 'PATCH',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -363,7 +363,7 @@ async function loadEntregasEmpleado() {
   try {
     const token = localStorage.getItem('jwt');
     // Obtener todas las entregas relevantes (puedes ajustar el endpoint si es necesario)
-    const res = await fetch('http://localhost:8000/empleado/pedidos', {
+    const res = await fetch('https://api-gateway-zfzn.onrender.com/empleado/pedidos', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
     let entregas = await res.json();
@@ -498,7 +498,7 @@ function renderEntregasCards(entregas) {
 function iniciarEntrega(pedidoId) {
     // Obtener el token JWT almacenado tras el login
     const token = localStorage.getItem('jwt');
-    fetch(`http://localhost:8000/pedidos/pedidos/${pedidoId}/estado`, {
+    fetch(`https://api-gateway-zfzn.onrender.com/pedidos/pedidos/${pedidoId}/estado`, {
       method: 'PATCH',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -526,7 +526,7 @@ function iniciarEntrega(pedidoId) {
 function completarEntrega(pedidoId) {
     // Obtener el token JWT almacenado tras el login
     const token = localStorage.getItem('jwt');
-    fetch(`http://localhost:8000/pedidos/pedidos/${pedidoId}/estado`, {
+    fetch(`https://api-gateway-zfzn.onrender.com/pedidos/pedidos/${pedidoId}/estado`, {
       method: 'PATCH',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -646,7 +646,7 @@ async function mostrarDetallePedido(id) {
   try {
     const token = localStorage.getItem('jwt');
     // Usar el endpoint dedicado para empleados
-    const res = await fetch(`http://localhost:8000/empleado/pedidos/${id}`, {
+    const res = await fetch(`https://api-gateway-zfzn.onrender.com/empleado/pedidos/${id}`, {
       headers: { 'Authorization': 'Bearer ' + token }
     });
     if (!res.ok) throw new Error('Error al cargar detalle');
@@ -678,7 +678,7 @@ function loadProductosEmpleado() {
   const grid = document.getElementById('productosGrid');
   if (grid) {
     grid.innerHTML = '<div class="loading text-gray-500 text-center py-4">Cargando productos...</div>';
-    fetch('http://localhost:8000/productos/pizzas')
+    fetch('https://api-gateway-zfzn.onrender.com/productos/pizzas')
       .then(res => res.json())
       .then(productos => {
         grid.innerHTML = '';
@@ -725,7 +725,7 @@ async function loadReportesEmpleado() {
 
   try {
     const token = localStorage.getItem('jwt');
-    fetch('http://localhost:8000/empleado/pedidos', {
+    fetch('https://api-gateway-zfzn.onrender.com/empleado/pedidos', {
       headers: { 'Authorization': 'Bearer ' + token }
     })
       .then(res => res.json())
@@ -788,7 +788,7 @@ async function loadReportesEmpleado() {
               hora = d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             }
             try {
-              const resDetalle = await fetch(`http://localhost:8000/empleado/pedidos/${p.id}`, {
+              const resDetalle = await fetch(`https://api-gateway-zfzn.onrender.com/empleado/pedidos/${p.id}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
               });
               if (resDetalle.ok) {
@@ -860,7 +860,7 @@ async function loadReportesEmpleado() {
               hora = d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             }
             try {
-              const resDetalle = await fetch(`http://localhost:8000/empleado/pedidos/${p.id}`, {
+              const resDetalle = await fetch(`https://api-gateway-zfzn.onrender.com/empleado/pedidos/${p.id}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
               });
               if (resDetalle.ok) {
