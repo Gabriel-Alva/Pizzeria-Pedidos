@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel Empleado - Pizzería</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN para gráficas en reportes -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- jsPDF y autoTable para exportar a PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.7.0/jspdf.plugin.autotable.min.js"></script>
+  <!-- SheetJS para exportar a Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+  <div class="flex min-h-screen w-full">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed md:static top-0 left-0 h-screen w-64 md:w-56 bg-white shadow-lg flex flex-col p-6 space-y-8 z-50 border-r border-gray-200 transition-transform duration-300 -translate-x-full md:translate-x-0 md:block w-full max-w-xs md:max-w-none">
+      <div class="flex items-center justify-between mb-6">
+        <div class="text-2xl font-bold text-green-700">Pizzería</div>
+        <span></span>
+      </div>
+      <nav class="flex flex-col gap-2 flex-1">
+        <button class="nav-link px-4 py-2 rounded-lg text-left font-semibold text-gray-700 hover:bg-green-50 focus:bg-green-100 transition flex items-center border-l-4 border-transparent active:border-green-600" data-section="dashboard">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0H7m6 0v6m0 0H7m6 0h6"/></svg>
+          Dashboard
+        </button>
+        <button class="nav-link px-4 py-2 rounded-lg text-left font-semibold text-gray-700 hover:bg-green-50 focus:bg-green-100 transition flex items-center border-l-4 border-transparent active:border-green-600" data-section="pedidos">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Pedidos
+        </button>
+        <button class="nav-link px-4 py-2 rounded-lg text-left font-semibold text-gray-700 hover:bg-green-50 focus:bg-green-100 transition flex items-center border-l-4 border-transparent active:border-green-600" data-section="entregas">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m-6 4h6a2 2 0 002-2v-5a2 2 0 00-2-2H7a2 2 0 00-2 2v5a2 2 0 002 2z"/></svg>
+          Entregas
+        </button>
+        <button class="nav-link px-4 py-2 rounded-lg text-left font-semibold text-gray-700 hover:bg-green-50 focus:bg-green-100 transition flex items-center border-l-4 border-transparent active:border-green-600" data-section="productos">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V7a2 2 0 00-2-2H6a2 2 0 00-2 2v6m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6"/></svg>
+          Productos
+        </button>
+        <button class="nav-link px-4 py-2 rounded-lg text-left font-semibold text-gray-700 hover:bg-green-50 focus:bg-green-100 transition flex items-center border-l-4 border-transparent active:border-green-600" data-section="reportes">
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+          Reportes
+        </button>
+      </nav>
+      <div class="border-t border-gray-200 my-4"></div>
+      <button class="logout bg-red-100 text-red-700 font-semibold rounded-lg py-2 hover:bg-red-200 transition w-full flex items-center justify-center gap-2" id="logoutBtn">
+        <span class="fa fa-sign-out-alt"></span>
+        Cerrar sesión
+      </button>
+    </aside>
+    <div class="flex-1 flex flex-col min-h-screen bg-gray-100 w-full max-w-full">
+      <!-- Header -->
+      <header class="flex items-center justify-between bg-white shadow px-2 md:px-6 py-4 sticky top-0 z-30 w-full">
+        <button class="menu-toggle md:hidden block text-gray-600" id="menuToggle" aria-label="Abrir menú">
+          <span class="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+          <span class="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+          <span class="block w-6 h-0.5 bg-gray-600"></span>
+        </button>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-green-200 to-green-400 flex items-center justify-center text-lg font-bold text-green-800 shadow-inner border-2 border-green-300" id="userAvatar">E</div>
+          <div>
+            <div class="user-name font-semibold text-gray-800" id="userName">Empleado</div>
+            <div class="user-email text-sm text-gray-500" id="userEmail">empleado@pizzeria.com</div>
+          </div>
+        </div>
+      </header>
+      <main class="flex-1 overflow-y-auto px-2 md:px-4 py-2 md:py-6 w-full max-w-full">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section content-section block w-full max-w-full">
+          <h2 class="text-xl font-bold mb-6 flex items-center">
+            <svg class="w-7 h-7 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            Dashboard
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 max-w-6xl mx-auto w-full">
+            <div class="bg-red-100 rounded-xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
+              <span class="stat-icon mb-2 bg-red-500 rounded-full p-2">
+                <!-- Pedido SVG -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" fill="#fff"/><path d="M16 3v4M8 3v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <div class="stat-number text-2xl font-bold text-red-900" id="pedidosPendientes">Cargando...</div>
+              <div class="stat-label text-gray-700">Pedidos Pendientes</div>
+            </div>
+            <div class="bg-orange-100 rounded-xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
+              <span class="stat-icon mb-2 bg-orange-500 rounded-full p-2">
+                <!-- Preparando SVG -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="stat-number text-2xl font-bold text-orange-900" id="pedidosPreparando">Cargando...</div>
+              <div class="stat-label text-gray-700">En Preparación</div>
+            </div>
+            <div class="bg-green-100 rounded-xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
+              <span class="stat-icon mb-2 bg-green-500 rounded-full p-2">
+                <!-- Listo SVG -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/></svg>
+              </span>
+              <div class="stat-number text-2xl font-bold text-green-900" id="pedidosListos">Cargando...</div>
+              <div class="stat-label text-gray-700">Listos para Entregar</div>
+            </div>
+            <div class="bg-gray-200 rounded-xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
+              <span class="stat-icon mb-2 bg-gray-500 rounded-full p-2">
+                <!-- Entregado SVG -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="stat-number text-2xl font-bold text-gray-900" id="pedidosEntregados">Cargando...</div>
+              <div class="stat-label text-gray-700">Entregados Hoy</div>
+            </div>
+          </div>
+          <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex-1 bg-white rounded-xl shadow p-6 mb-8 lg:mb-0 overflow-x-auto">
+              <h3 class="font-semibold mb-4">Pedidos por Estado (Hoy)</h3>
+              <canvas id="pedidosChart" height="120"></canvas>
+            </div>
+            <div class="flex-1 bg-white rounded-xl shadow p-6 overflow-x-auto">
+              <h3 class="font-semibold mb-4">Últimos Pedidos</h3>
+              <div class="overflow-x-auto rounded-lg shadow border border-gray-200 bg-white">
+                <table class="min-w-full divide-y divide-gray-200 text-sm">
+                  <thead class="bg-green-100">
+                    <tr>
+                      <th class="px-3 py-2 font-bold text-left">Cliente</th>
+                      <th class="px-3 py-2 font-bold text-left">Estado</th>
+                      <th class="px-3 py-2 font-bold text-left">Hora</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ultimosPedidosTbody" class="divide-y divide-gray-100">
+                    <!-- Se llenará por JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Gestión de Pedidos -->
+        <section id="pedidos" class="section content-section hidden w-full max-w-full overflow-y-auto max-h-[70vh]" style="max-height: 70vh;">
+          <h2 class="text-xl font-bold mb-6 flex items-center">
+            <svg class="w-7 h-7 mr-2 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7V4a2 2 0 012-2h12a2 2 0 012 2v3"/><path d="M20 7v13a2 2 0 01-2 2H6a2 2 0 01-2-2V7m16 0H4"/></svg>
+            Gestión de Pedidos
+          </h2>
+          <div class="flex flex-col sm:flex-row gap-4 mb-4">
+            <select id="filtroEstado" class="px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50">
+              <option value="">Todos los estados</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="confirmado">Confirmado</option>
+              <option value="preparando">Preparando</option>
+              <option value="listo">Listo</option>
+              <option value="entregado">Entregado</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+            <button id="btnActualizarPedidos" class="bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 px-4 transition flex items-center gap-2">
+              <i class="fas fa-sync-alt"></i> Actualizar
+            </button>
+          </div>
+          <div id="pedidosList" class="overflow-x-auto"></div>
+        </section>
+        <!-- Gestión de Entregas -->
+        <section id="entregas" class="section content-section hidden w-full max-w-full overflow-y-auto max-h-[70vh]" style="max-height: 70vh;">
+          <h2 class="text-xl font-bold mb-6 flex items-center">
+            <svg class="w-7 h-7 mr-2 text-yellow-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 17v-6a2 2 0 012-2h3V7a2 2 0 012-2h4a2 2 0 012 2v2h3a2 2 0 012 2v6"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/></svg>
+            Gestión de Entregas
+          </h2>
+          <!-- NUEVO: Filtros de estado y pago -->
+          <div class="flex flex-col md:flex-row gap-4 mb-6">
+            <div class="flex gap-2 items-center">
+              <label class="font-semibold">Estado:</label>
+              <select id="filtroEstadoEntrega" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-gray-50">
+                <option value="">Todos</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en_entrega">En Curso</option>
+                <option value="entregado">Entregado</option>
+                <option value="confirmado">Confirmado</option>
+                <option value="preparando">Preparando</option>
+                <option value="listo">Listo</option>
+                <option value="cancelado">Cancelado</option>
+              </select>
+            </div>
+            <div class="flex gap-2 items-center">
+              <label class="font-semibold">Pago:</label>
+              <select id="filtroPagoEntrega" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-gray-50">
+                <option value="">Todos</option>
+                <option value="pagado">Pagado</option>
+                <option value="pendiente">No Pagado</option>
+                <option value="fallido">Fallido</option>
+              </select>
+            </div>
+            <div class="flex-1"></div>
+            <input type="text" id="busquedaClienteEntrega" placeholder="Buscar cliente..." class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-gray-50 w-full md:w-64" />
+          </div>
+          <!-- NUEVO: Grid de cards de entregas -->
+          <div id="entregasCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+        <!-- Vista de Productos -->
+        <section id="productos" class="section content-section hidden w-full max-w-full">
+          <h2 class="text-xl font-bold mb-6 flex items-center">
+            <svg class="w-7 h-7 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+            Productos Disponibles
+          </h2>
+          <div class="max-h-[60vh] overflow-y-auto shadow-inner border border-green-200 rounded-lg p-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productosGrid"></div>
+          </div>
+        </section>
+        <!-- Reportes del Empleado -->
+        <section id="reportes" class="section content-section hidden w-full max-w-full overflow-y-auto max-h-[70vh]" style="max-height: 70vh;">
+          <h2 class="text-xl font-bold mb-6 flex items-center">
+            <svg class="w-7 h-7 mr-2 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="9" width="3" height="7"/><rect x="12" y="5" width="3" height="11"/><rect x="17" y="13" width="3" height="3"/></svg>
+            Mis Reportes
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div class="bg-blue-100 rounded-xl shadow p-6 flex flex-col items-center">
+              <h3 class="font-semibold text-blue-800 mb-2">Pedidos Procesados Hoy</h3>
+              <div class="text-2xl font-bold text-blue-900" id="pedidosProcesadosHoy">0</div>
+            </div>
+            <div class="bg-green-100 rounded-xl shadow p-6 flex flex-col items-center">
+              <h3 class="font-semibold text-green-800 mb-2">Entregas Completadas</h3>
+              <div class="text-2xl font-bold text-green-900" id="entregasCompletadas">0</div>
+            </div>
+            <div class="bg-yellow-100 rounded-xl shadow p-6 flex flex-col items-center">
+              <h3 class="font-semibold text-yellow-800 mb-2">Tiempo Promedio de Preparación</h3>
+              <div class="text-2xl font-bold text-yellow-900" id="tiempoPromedio">0 min</div>
+            </div>
+          </div>
+     
+          <div class="overflow-x-auto mb-8 max-w-4xl mx-auto max-h-[50vh] overflow-y-auto shadow-inner border border-blue-200 rounded-lg p-2 w-full p-6 max-w-7xl">
+            <div class="flex gap-2 mb-2">
+              <button id="btnExportarRecientesPDF" class="bg-red-600 hover:bg-red-800 text-white font-semibold rounded-lg py-2 px-4 transition flex items-center gap-2" title="Exportar pedidos recientes a PDF">
+                <i class="fas fa-file-pdf"></i> Exportar PDF
+              </button>
+              <button id="btnExportarRecientesExcel" class="bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 px-4 transition flex items-center gap-2" title="Exportar pedidos recientes a Excel">
+                <i class="fas fa-file-excel"></i> Exportar Excel
+              </button>
+            </div>
+            <h4 class="text-center text-blue-600 font-semibold mb-2">Pedidos Recientes (Últimos 7 días)</h4>
+            <table class="min-w-full divide-y divide-gray-200 text-lg">
+              <thead class="bg-green-100">
+                <tr>
+                  <th class="px-3 py-2 font-bold text-left">Fecha</th>
+                  <th class="px-3 py-2 font-bold text-left">Estado</th>
+                  <th class="px-3 py-2 font-bold text-left">Productos</th>
+                  <th class="px-3 py-2 font-bold text-left">Cliente</th>
+                  <th class="px-3 py-2 font-bold text-left">Monto Total</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyPedidosCompletos"></tbody>
+            </table>
+          </div>
+          <div class="overflow-x-auto mb-8 max-w-4xl mx-auto max-h-[50vh] overflow-y-auto shadow-inner border border-green-200 rounded-lg p-2 w-full p-6 max-w-7xl">
+            <div class="flex gap-2 mb-2">
+              <button id="btnExportarTodosPDF" class="bg-red-600 hover:bg-red-800 text-white font-semibold rounded-lg py-2 px-4 transition flex items-center gap-2" title="Exportar todos los pedidos a PDF">
+                <i class="fas fa-file-pdf"></i> Exportar TODOS PDF
+              </button>
+              <button id="btnExportarTodosExcel" class="bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 px-4 transition flex items-center gap-2" title="Exportar todos los pedidos a Excel">
+                <i class="fas fa-file-excel"></i> Exportar TODOS Excel
+              </button>
+            </div>
+            <h4 class="text-center text-blue-600 font-semibold mb-2">Todos los Pedidos Realizados</h4>
+            <table id="tablaTodosPedidos" class="min-w-full divide-y divide-gray-200 text-lg">
+              <thead class="bg-green-100">
+                <tr>
+                  <th class="px-3 py-2 font-bold text-left">Fecha</th>
+                  <th class="px-3 py-2 font-bold text-left">Estado</th>
+                  <th class="px-3 py-2 font-bold text-left">Productos</th>
+                  <th class="px-3 py-2 font-bold text-left">Cliente</th>
+                  <th class="px-3 py-2 font-bold text-left">Monto Total</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyTodosPedidos"></tbody>
+            </table>
+          </div>
+          <div class="overflow-x-auto max-w-2xl mx-auto max-h-[40vh] overflow-y-auto shadow-inner border border-yellow-200 rounded-lg p-2 w-full p-6 max-w-4xl">
+            <h4 class="text-center text-blue-600 font-semibold mb-2">Resumen de Pedidos de Hoy por Estado</h4>
+            <table class="min-w-full divide-y divide-gray-200 text-lg">
+              <thead class="bg-green-100">
+                <tr>
+                  <th class="px-3 py-2 font-bold text-left">Estado</th>
+                  <th class="px-3 py-2 font-bold text-left">Cantidad</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyResumenEstadosHoy"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <!-- Modal de detalle de pedido -->
+  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden" id="modalDetallePedido">
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative">
+      <span class="close absolute top-4 right-4 text-2xl text-gray-400 cursor-pointer hover:text-red-500" id="cerrarModalDetalle">&times;</span>
+      <h3 class="text-lg font-bold mb-4">Detalle del Pedido</h3>
+      <div id="detallePedidoContent">
+        <div class="loading">Cargando detalles...</div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal de actualizar estado -->
+  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden" id="modalActualizarEstado">
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative">
+      <span class="close absolute top-4 right-4 text-2xl text-gray-400 cursor-pointer hover:text-red-500" id="cerrarModalEstado">&times;</span>
+      <h3 class="text-lg font-bold mb-4">Actualizar Estado del Pedido</h3>
+      <form id="formActualizarEstado" class="flex flex-col gap-4">
+        <div class="form-group flex flex-col gap-2">
+          <label for="nuevoEstado" class="font-medium text-gray-700">Nuevo Estado:</label>
+          <select id="nuevoEstado" required class="px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50">
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmado">Confirmado</option>
+            <option value="preparando">Preparando</option>
+            <option value="listo">Listo</option>
+            <option value="entregado">Entregado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+        </div>
+        <div class="form-group flex flex-col gap-2">
+          <label for="comentarioEstado" class="font-medium text-gray-700">Comentario (opcional):</label>
+          <textarea id="comentarioEstado" rows="3" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50"></textarea>
+        </div>
+        <div class="form-actions flex gap-4 justify-end">
+          <button type="button" id="cancelarEstado" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg py-2 px-4 transition">Cancelar</button>
+          <button type="submit" class="bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 px-4 transition">Actualizar Estado</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Scripts -->
+  <script type="module" src="js/empleado_panel.js"></script>
+</body>
+</html> 

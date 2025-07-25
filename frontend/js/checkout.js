@@ -128,7 +128,7 @@ window.addEventListener('input', function(e) {
         if (window.cerrarCarritoModal) window.cerrarCarritoModal();
         setTimeout(() => {
           localStorage.removeItem('carrito');
-          window.location.href = 'index.html';
+          window.location.href = 'interfaz/index.html';
         }, 2000);
       } else {
         const data = await resPedido.json();

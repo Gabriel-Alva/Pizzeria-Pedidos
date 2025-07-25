@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro - Pizzería</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <!-- Contenedor principal del registro -->
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col items-stretch">
+    <h2 class="text-2xl font-bold text-center text-green-900 mb-6">Registro de Cliente</h2>
+    <!-- Formulario de registro -->
+    <form id="registerForm" class="flex flex-col gap-4">
+      <label for="registerNombre" class="font-medium text-gray-700">Nombre:</label>
+      <input type="text" id="registerNombre" name="nombre" required class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50" />
+      <label for="registerApellido" class="font-medium text-gray-700">Apellido:</label>
+      <input type="text" id="registerApellido" name="apellido" required class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50" />
+      <label for="registerEmail" class="font-medium text-gray-700">Email:</label>
+      <input type="email" id="registerEmail" name="email" required class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50" />
+      <label for="registerPassword" class="font-medium text-gray-700">Contraseña:</label>
+      <div class="relative">
+        <input type="password" id="registerPassword" name="password" required class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50 pr-10" />
+        <span id="toggleRegisterPassword" class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-400">
+          <!-- Icono de ojo SVG -->
+          <svg id="eyeRegister" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="#888" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#888" stroke-width="2"/></svg>
+        </span>
+      </div>
+      <small class="text-gray-500 -mt-2 mb-2">La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.</small>
+      <label for="registerTelefono" class="font-medium text-gray-700">Teléfono (opcional):</label>
+      <input type="tel" id="registerTelefono" name="telefono" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50" />
+      <button type="submit" class="mt-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 transition">Registrarse</button>
+    </form>
+    <button onclick="window.location.href='interfaz/index.html'" class="w-full mt-6 bg-gray-200 text-gray-800 font-semibold rounded-lg py-2 hover:bg-gray-300 transition">Volver</button>
+    <p class="text-center mt-4 text-gray-600">¿Ya tienes cuenta? <a href="interfaz/login.html" class="text-green-600 font-semibold hover:underline">Inicia sesión aquí</a></p>
+    <div id="registerMessage" class="text-center mt-2 text-red-600 min-h-[1.2em]"></div>
+  </div>
+  <!-- Script de funcionalidad registro -->
+  <script type="module">
+    // Importa la función de registro desde el controlador
+    import { registrarUsuario } from './js/Controladores/usuariosController.js';
+    // Maneja el envío del formulario de registro
+    document.getElementById('registerForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('registerNombre').value;
+      const apellido = document.getElementById('registerApellido').value;
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+      const telefono = document.getElementById('registerTelefono').value || null;
+      try {
+        await registrarUsuario({ nombre, apellido, email, password, telefono });
+        document.getElementById('registerMessage').textContent = '¡Registro exitoso!';
+        setTimeout(() => window.location.href = 'login.html', 1000);
+      } catch (err) {
+        document.getElementById('registerMessage').textContent = 'Error: ' + (err.message || 'No se pudo registrar');
+      }
+    };
+    // Mostrar/ocultar contraseña registro
+    document.getElementById('toggleRegisterPassword').onclick = function() {
+      const input = document.getElementById('registerPassword');
+      if (input.type === 'password') {
+        input.type = 'text';
+        this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="#888" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#888" stroke-width="2"/><line x1="4" y1="20" x2="20" y2="4" stroke="#e74c3c" stroke-width="2"/></svg>';
+      } else {
+        input.type = 'password';
+        this.innerHTML = '<svg id="eyeRegister" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="#888" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#888" stroke-width="2"/></svg>';
+      }
+    };
+  </script>
+</body>
+</html> 

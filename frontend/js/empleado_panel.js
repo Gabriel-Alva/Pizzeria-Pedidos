@@ -6,7 +6,7 @@ import { getCurrentUser, logoutUsuario } from './Controladores/usuariosControlle
 // ====== AUTENTICACIÓN Y DATOS DE USUARIO ======
 const user = getCurrentUser();
 if (!user || user.rol !== 'empleado') {
-  window.location.href = 'login.html';
+  window.location.href = 'interfaz/login.html';
 }
 document.getElementById('userName').textContent = `${user.nombre} ${user.apellido}`;
 document.getElementById('userEmail').textContent = user.correo;
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Verifica autenticación antes de cargar el dashboard
   const user = getCurrentUser();
   if (!user || user.rol !== 'empleado') {
-    window.location.href = 'login.html';
+    window.location.href = 'interfaz/login.html';
     return;
   }
   // Oculta todas las secciones excepto dashboard al cargar

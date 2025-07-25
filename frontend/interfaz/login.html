@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión - Pizzería</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <!-- Contenedor principal del login -->
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col items-stretch">
+    <h2 class="text-2xl font-bold text-center text-green-900 mb-6">Iniciar Sesión</h2>
+    <!-- Formulario de login -->
+    <form id="loginForm" class="flex flex-col gap-4">
+      <label for="loginEmail" class="font-medium text-gray-700">Email:</label>
+      <input type="email" id="loginEmail" name="email" required class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50" />
+      <label for="loginPassword" class="font-medium text-gray-700">Contraseña:</label>
+      <div class="relative">
+        <input type="password" id="loginPassword" name="password" required class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-50 pr-10" />
+        <span id="toggleLoginPassword" class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-400">
+          <!-- Icono de ojo SVG -->
+          <svg id="eyeLogin" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="#888" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#888" stroke-width="2"/></svg>
+        </span>
+      </div>
+      <button type="submit" class="mt-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 transition">Ingresar</button>
+    </form>
+    <button onclick="window.location.href='interfaz/index.html'" class="w-full mt-6 bg-gray-200 text-gray-800 font-semibold rounded-lg py-2 hover:bg-gray-300 transition">Volver</button>
+    <p class="text-center mt-4 text-gray-600">¿No tienes cuenta? <a href="interfaz/registro.html" class="text-green-600 font-semibold hover:underline">Regístrate aquí</a></p>
+    <div id="loginMessage" class="text-center mt-2 text-red-600 min-h-[1.2em]"></div>
+  </div>
+  <!-- Script de funcionalidad login -->
+  <script type="module">
+    // Importa la función de login desde el controlador
+    import { loginUsuario } from './js/Controladores/usuariosController.js';
+    // Maneja el envío del formulario de login
+    document.getElementById('loginForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      try {
+        await loginUsuario({ email, password });
+        document.getElementById('loginMessage').textContent = '¡Login exitoso!';
+        // Redirige a la página principal después de login exitoso
+        setTimeout(() => window.location.href = 'index.html', 1000);
+      } catch (err) {
+        document.getElementById('loginMessage').textContent = 'Error: ' + (err.message || 'No se pudo iniciar sesión');
+      }
+    };
+    // Mostrar/ocultar contraseña login
+    document.getElementById('toggleLoginPassword').onclick = function() {
+      const input = document.getElementById('loginPassword');
+      if (input.type === 'password') {
+        input.type = 'text';
+        this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="#888" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#888" stroke-width="2"/><line x1="4" y1="20" x2="20" y2="4" stroke="#e74c3c" stroke-width="2"/></svg>';
+      } else {
+        input.type = 'password';
+        this.innerHTML = '<svg id="eyeLogin" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="#888" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#888" stroke-width="2"/></svg>';
+      }
+    };
+  </script>
+</body>
+</html> 

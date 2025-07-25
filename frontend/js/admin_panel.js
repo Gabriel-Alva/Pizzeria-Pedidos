@@ -4,7 +4,7 @@ import { mostrarVistaUsuarios } from './Vistas/usuarios.js';
 // Verificar autenticación
 const user = getCurrentUser();
 if (!user || user.rol !== 'administrador') {
-  window.location.href = 'login.html';
+  window.location.href = 'interfaz/login.html';
 }
 
 // Mostrar información del usuario
@@ -889,7 +889,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // --- Cerrar sesión ---
   document.getElementById('logoutBtn').onclick = function() {
     localStorage.removeItem('usuario');
-    window.location.href = 'login.html';
+    window.location.href = 'interfaz/login.html';
   };
   // --- Menú lateral funcional y responsivo ---
   const sidebar = document.getElementById('sidebar');

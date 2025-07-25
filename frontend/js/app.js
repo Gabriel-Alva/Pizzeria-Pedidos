@@ -348,7 +348,7 @@ function mostrarCarritoModal() {
     <button id="btnContinuarPedido" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition mt-4">Continuar pedido</button>`;
     // Evento para continuar pedido
     const btn = document.getElementById('btnContinuarPedido');
-    if (btn) btn.onclick = () => { window.location.href = 'checkout.html'; };
+    if (btn) btn.onclick = () => { window.location.href = 'interfaz/checkout.html'; };
     // Evento para quitar productos
     cont.querySelectorAll('.btn-quitar').forEach(btnQ => {
       btnQ.onclick = function() {
