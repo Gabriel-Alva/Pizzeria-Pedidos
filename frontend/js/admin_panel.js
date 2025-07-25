@@ -889,7 +889,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // --- Cerrar sesión ---
   document.getElementById('logoutBtn').onclick = function() {
     localStorage.removeItem('usuario');
-    window.location.href = 'interfaz/login.html';
+    window.location.href = '../interfaz/login.html';
   };
   // --- Menú lateral funcional y responsivo ---
   const sidebar = document.getElementById('sidebar');

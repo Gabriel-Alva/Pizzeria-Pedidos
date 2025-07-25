@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.removeItem('favoritos');
       localStorage.removeItem('calificaciones');
       // Redirigir al login
-      window.location.href = 'interfaz/login.html';
+      window.location.href = '../interfaz/login.html';
     });
   }
   

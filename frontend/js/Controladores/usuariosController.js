@@ -15,11 +15,11 @@ export async function loginUsuario({ email, password }) {
   localStorage.setItem('usuario', JSON.stringify(data.usuario));
   // Redirigir según el rol
   if (data.usuario.rol === 'administrador') {
-    window.location.href = 'panel_admin.html';
+    window.location.href = '../interfaz/panel_admin.html';
   } else if (data.usuario.rol === 'empleado') {
-    window.location.href = 'panel_empleado.html';
+    window.location.href = '../interfaz/panel_empleado.html';
   } else {
-    window.location.href = 'panel_cliente.html'; // Clientes van al panel principal
+    window.location.href = '../interfaz/panel_cliente.html'; // Clientes van al panel principal
   }
 }
 
@@ -45,7 +45,7 @@ export async function registrarUsuario({ nombre, apellido, email, password, tele
 export function logoutUsuario() {
   localStorage.removeItem('jwt');
   localStorage.removeItem('usuario');
-  window.location.href = 'login.html';
+  window.location.href = '../interfaz/login.html';
 }
 
 // Función para verificar si el usuario está autenticado

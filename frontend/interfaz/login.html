@@ -25,14 +25,14 @@
       </div>
       <button type="submit" class="mt-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-lg py-2 transition">Ingresar</button>
     </form>
-    <button onclick="window.location.href='interfaz/index.html'" class="w-full mt-6 bg-gray-200 text-gray-800 font-semibold rounded-lg py-2 hover:bg-gray-300 transition">Volver</button>
-    <p class="text-center mt-4 text-gray-600">¿No tienes cuenta? <a href="interfaz/registro.html" class="text-green-600 font-semibold hover:underline">Regístrate aquí</a></p>
+    <button onclick="window.location.href='../interfaz/index.html'" class="w-full mt-6 bg-gray-200 text-gray-800 font-semibold rounded-lg py-2 hover:bg-gray-300 transition">Volver</button>
+    <p class="text-center mt-4 text-gray-600">¿No tienes cuenta? <a href="../interfaz/registro.html" class="text-green-600 font-semibold hover:underline">Regístrate aquí</a></p>
     <div id="loginMessage" class="text-center mt-2 text-red-600 min-h-[1.2em]"></div>
   </div>
   <!-- Script de funcionalidad login -->
   <script type="module">
     // Importa la función de login desde el controlador
-    import { loginUsuario } from './js/Controladores/usuariosController.js';
+    import { loginUsuario } from '../js/Controladores/usuariosController.js';
     // Maneja el envío del formulario de login
     document.getElementById('loginForm').onsubmit = async function(e) {
       e.preventDefault();
